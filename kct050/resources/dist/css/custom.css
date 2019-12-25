@@ -1,0 +1,31 @@
+@charset "utf-8";
+@import './vendor.css';
+@font-face {font-family: 'NanumBarunpenR';src: url('../../../resources/dist/font/NanumBarunpenR.ttf');}
+@font-face {font-family: 'NanumSquareR';src: url('../../../resources/dist/font/NanumSquareR.ttf');}
+@font-face {font-family: 'NanumSquareRoundR';src: url('../../../resources/dist/font/NanumSquareRoundR.ttf');}
+@font-face {font-family: 'NanumPen';src: url('../../../resources/dist/font/NanumPen.ttf');}
+body {margin: 0;font-family: "NanumSquareRoundR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;text-align: left;background-color: #fff;}
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.ml1{margin-left:1px;}
+.mb0{margin-bottom:0;}
+.mb5{margin-bottom:5px;}
+.inline-block{display:inline-block;width:auto;}
+.card-footer .btn-lg{min-width:150px;}
+.between-date-wrap::after{display:block;clear:both;content:"";}
+.between-date-wrap .between-date-item{float:left;}
+.between-date-wrap .between-date{width:47%;}
+.between-date-wrap .between-unit{width:6%;text-align:center;padding-top:5px;}
+.alert-text{font-weight:bold;margin-bottom:5px;}
+.alert-text p{margin:0;}
+.custom-file-input ~ .custom-file-label::after {content: "찾아보기";}
+.layout-boxed .wrapper, .layout-boxed .wrapper::before {max-width: 100%;}
+a.logo-link span { display: block; padding-left: 50px; }
+.brand-link.text-sm .brand-image, .text-sm .brand-link .brand-image {margin-top: 6px;}
+.wrapper .content-wrapper { min-height: calc( 100vh - 7.3rem ) !important; }
+.top_search_row{text-align:right;}
+.top_search_row > label, .top_search_row button {margin-left:5px;}
+.height-sm{height:210px !important;resize:none;}
+.phone-wrapper{border: 1px solid #ccc;padding: 10px;border-radius: 10px;background: #f7f7f7;}
+.phone-wrapper-content{background:#fff;border:1px solid #ced4da;height: 230px;padding:10px;font-size:17px;}
+.phone-change-right{font-size: 77px;margin-top: 70px;}

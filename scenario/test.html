@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<div>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- include file="../temp/link.jsp -->
+<title>SEAMLESS</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="./resources/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Ion Slider -->
+<link rel="stylesheet" href="./resources/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+<!-- Tempusdominus Bbootstrap 4 -->
+<link rel="stylesheet"
+	href="./resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- iCheck -->
+<link rel="stylesheet"
+	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- JQVMap -->
+<link rel="stylesheet" href="./resources/plugins/jqvmap/jqvmap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="./resources/dist/css/adminlte.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	href="./resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	href="./resources/plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet"
+	href="./resources/plugins/summernote/summernote-bs4.css">
+<!-- DataTables -->
+<link rel="stylesheet"
+	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+  <link rel="stylesheet" href="./resources/dist/css/custom.css">
+
+<style>
+
+button {background: none; border: none;}
+table thead tr th {text-align: center;}
+table div.row span, 
+table div.row label {vertical-align: sub;}
+table .add-row {padding: 0.4rem 0.75rem;}
+.thead-box {margin: 0.4rem 0.3rem 0 0.7rem; padding: 0.4rem 0.75rem; background: #ececec; font-weight: bold; border-top: 1px solid #333;}
+.thead-box .step-box {border: none; padding-left: 2rem;}
+.thead-box .step-box .table-cols {}
+.thead-box .step-box .table-cols > div {text-align: center;}
+.thead-box + .setting-box {margin-top: 0 !important; border-top: none !important;}
+.setting-box {margin: 0.4rem 0.3rem; padding: 0.4rem 0.75rem; border: 1px solid #f5f5f5; background: #fff; }
+.setting-box th, .setting-box td{border:0;}
+.setting-box .row {padding: 6px 12px; margin: 0; position: relative;}
+.step-box {padding: 6px 0 12px;position: relative;}
+.step-box.step-2 {margin-left: 13px;}
+.step2 .badge{background: #289ba7;}
+.step-box.step-2 .row {left: -10px;}
+.step-box.step-3 {margin-left: 26px;}
+.step-3 .badge{background: #e83e8c;}
+.step-box.step-3 .row {left: -20px;}
+/* .step-box .row:nth-child(1) {border-bottom: 1px dashed #686565;} */
+.step-box + .step-box {margin-top: 10px;}
+.form-control-sm {height: 26px; line-height: 26px;}
+
+.btn-function {width: 40px; height: 26px; line-height: 26px; border-radius: 4px;}
+.btn-function.btn-down {background: #0069d9 !important;}
+.btn-function.btn-minus {background: #dc3545 !important;}
+.btn-function.btn-adv-setting {background: #28a745 !important; margin-left: 6px;}
+.btn-function.btn-adv-setting.cancelable {background: #d4970e !important; margin-left: 6px;}
+.btn-function i {color: #fff !important; font-size: 18px !important;}
+.btn-adv-setting {color: goldenrod; background-color: transparent; border: 0;}
+.btn-adv-setting i {font-size: 16px !important;}
+.adviser-status {position: absolute; left: -27px; top: -1px; border-bottom-left-radius: 4px; border-top-left-radius: 4px;}
+.adviser-status button {color: #fff; padding: 3px 6px;}
+.step-box.step-1 .adviser-status {background: #28a745;}
+.step-box.step-2 .adviser-status {background: #148192;}
+.adviser-selected {border: 1px solid #148192 !important;}
+.adviser-selected .adviser-status {display: block;}
+
+.table{table-layout:fixed;}
+.table-cols::after {content:''; display: block; width: 100%; clear: both;}
+.step-box-table{width:100%;}
+.step-box-table thead th{border-bottom:0;padding:0.8rem 0.75rem;}
+table thead th{white-space:nowrap;}
+.step-box-table th, .step-box-table td{border:0;}
+.step-box-table .badge-box {width: 6%; text-align: right; position:relative;}
+.step-box-table .number {width: 5%;}
+.step-box-table .number-name {width: 12%;}
+.step-box-table .number-type {width: 12%;}
+.step-box-table .select-bgm {width: 12%;}
+.step-box-table .btn-functions {width: 38%;}
+.step-box-table .btn-functions > * {vertical-align: middle;}
+.step-box-table .btn-functions .adv-select-box {display: inline-block; width: 60%; margin-left: 2%; padding-left: 2%; border-left: 1px solid #eee;}
+.step-box-table .btn-functions .adv-select-box::after {content:''; display: block; width: 100%; clear: both;}
+.step-box-table .btn-functions .adv-select-box > * {display: inline-block; vertical-align: middle; margin-bottom: 0;}
+.step-box-table .btn-functions .adv-select-box select:nth-child(2) {width: 20%; margin-right: 4%;}
+.step-box-table .btn-functions .adv-select-box select {width: 36%;}
+
+/* .col-md-1 {flex: 0 0 7% !important; max-width: 7% !important;} */
+
+@media screen and (max-width: 768px) { 
+    .step-box-wrapper{display: block;width: 100%;overflow-x: auto;-webkit-overflow-scrolling: touch;}
+    .step-box-table .btn-functions{white-space:nowrap;}
+}
+
+</style>
+
+<!--//END include file="../temp/link.jsp -->
+<body class="sidebar-mini layout-boxed text-sm">
+	<div class="wrapper">
+        <!-- include file="../temp/nav.jsp -->
+        <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
+
+        <!-- include file="../temp/aside.jsp -->
+        <div id="asideInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
+        
+        <!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>시나리오 관리</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/subs">ARS 설정</a></li>
+                                <li class="breadcrumb-item active">시나리오 관리</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h1 class="card-title">시나리오 리스트</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-sm-12">
+                                <div class="">
+                                    <table id="example2" class="table table-bordered" role="grid" >
+                                        <colgroup>
+                                            <col style="width:10%;">
+                                            <col style="width:50%;">
+                                            <col style="width:20%;">
+                                            <col style="width:20%;">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>시나리오명</th>
+                                                <th>생성일</th>
+                                                <th class="text-center">설정</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd">
+                                                <td>1</td>
+                                                <td>제품고장 신고 시나리오</td>
+                                                <td>2019-12-17</td>
+                                                <td class="text-center">
+                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="bg-gray-point add-row">
+                                                    <div class="step-box-wrapper">
+                                                        <table class="step-box-table">
+                                                            <thead class="">
+                                                                <tr class="step-box thead-box">
+                                                                    <th class="badge-box">
+                                                                        단계
+                                                                    </th>
+                                                                    <th class="number">
+                                                                        번호
+                                                                    </th>
+                                                                    <th class="number-name">
+                                                                        번호명
+                                                                    </th>
+                                                                    <th class="number-type">
+                                                                        착신유형
+                                                                    </th>
+                                                                    <th class="select-bgm">
+                                                                        음원선택
+                                                                    </th>
+                                                                    <th class="btn-functions">
+                                                                        기능설정
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="setting-box">
+                                                                    <tr class="step-box step-1 adviser-selected">
+                                                                        <td class="badge-box">
+                                                                            <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
+                                                                            <span class="badge badge-success text-sm">1단계</span>
+                                                                        </td>
+                                                                        <td class="number">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="number-name">
+                                                                            <input type="text" class="form-control form-control-sm">
+                                                                        </td>
+                                                                        <td class="number-type">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="select-bgm">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="btn-functions">
+                                                                            <button class="btn-function btn-down" onclick="stepDepthShow(this);" data-step="1"><i class="fas fa-arrow-down"></i></button>
+                                                                            <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
+                                                                            <div class="adv-select-box">
+                                                                                <label>번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0</option>
+                                                                                </select>
+        
+                                                                                <label>연결번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0101015454</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="step-box step-2 adviser-selected">
+                                                                        <td class="badge-box">
+                                                                            <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
+                                                                            <div>
+                                                                                <span class="badge badge-success text-sm">2단계</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="number">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="number-name">
+                                                                            <input type="text" class="form-control form-control-sm">
+                                                                        </td>
+                                                                        <td class="number-type">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="select-bgm">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="btn-functions">
+                                                                            <button class="btn-function btn-down" onclick="stepDepthShow(this);" data-step="1"><i class="fas fa-arrow-down"></i></button>
+                                                                            <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
+                                                                            <div class="adv-select-box">
+                                                                                <label>번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0</option>
+                                                                                </select>
+        
+                                                                                <label>연결번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0101015454</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="step-box step-3">
+                                                                        <td class="badge-box">
+                                                                            <span class="badge badge-success text-sm">3단계</span>
+                                                                        </td>
+                                                                        <td class="number">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="number-name">
+                                                                            <input type="text" class="form-control form-control-sm">
+                                                                        </td>
+                                                                        <td class="number-type">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="select-bgm">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="btn-functions">
+                                                                            <button class="btn-function btn-down" onclick="stepDepthShow(this);" data-step="1"><i class="fas fa-arrow-down"></i></button>
+                                                                            <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
+                                                                            <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="step-box step-1 adviser-selected">
+                                                                        <td class="badge-box">
+                                                                            <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
+                                                                            <span class="badge badge-success text-sm">1단계</span>
+                                                                        </td>
+                                                                        <td class="number">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="number-name">
+                                                                            <input type="text" class="form-control form-control-sm">
+                                                                        </td>
+                                                                        <td class="number-type">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="select-bgm">
+                                                                            <select class="form-control form-control-sm">
+                                                                                <option>선택하세요</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="btn-functions">
+                                                                            <button class="btn-function btn-down" onclick="stepDepthShow(this);" data-step="1"><i class="fas fa-arrow-down"></i></button>
+                                                                            <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
+                                                                            <div class="adv-select-box">
+                                                                                <label>번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0</option>
+                                                                                </select>
+        
+                                                                                <label>연결번호</label>
+                                                                                <select class="form-control form-control-sm">
+                                                                                    <option>0101015454</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                        </table>
+                                                    </div>
+                                                    
+                                                    </div>
+                                                    <div class="setting-box">
+                                                        <div class="step-box adviser-box">
+                                                            <div class="row">
+                                                                <div class="col-md-12 col-xs-12 text-center">
+                                                                    <button class="btn btn-primary btn-sm">적용</button>
+                                                                    <button class="btn btn-danger btn-sm">취소</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr role="row" class="">
+                                                <td>2</td>
+                                                <td>배송, 주문 관련 문의 시나리오</td>
+                                                <td>2019-12-17</td>
+                                                <td class="text-center">
+                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td>3</td>
+                                                <td>반품, 환불 관련 문의 시나리오</td>
+                                                <td>2019-12-17</td>
+                                                <td class="text-center">
+                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
+                                                </td>
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h1 class="card-title">시나리오 상세 설정</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <label class="col-md-2 mt5">시나리오 명</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control form-control-sm">
+                                    </div>
+                                    <label class="col-md-2 mt5">대표 인사말(음원)</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control form-control-sm">
+                                            <option>선택하세요</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_regist_modal">적용하기</button>
+                    </div>
+                </div>
+                <!-- /.content -->
+            </section>
+            <!-- Control Sidebar -->
+        </div>
+        <!--/. content-wrapper -->
+        <!-- include file="../temp/footer.jsp -->
+        <div id="footerInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
+        
+    </div>
+    <!--/. wrapper -->
+    <!-- include file="../temp/javascriptLink.jsp -->
+    <!-- jQuery -->
+    <script src="./resources/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="./resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- DataTables -->
+    <script src="./resources/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="./resources/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    
+    <!-- Bootstrap 4 -->
+    <script src="./resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="./resources/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- ChartJS -->
+    <script src="./resources/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="./resources/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="./resources/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="./resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="./resources/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="./resources/plugins/moment/moment.min.js"></script>
+    <script src="./resources/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="./resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="./resources/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="./resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="./resources/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="./resources/dist/js/demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="./resources/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="./resources/plugins/toastr/toastr.min.js"></script>
+
+    <script src="./resources/js/c_function.js"></script>
+    <script src="./resources/js/c_event.js"></script>
+    <script src="./resources/js/c_ajax.js"></script>
+    <script src="./resources/js/config.js"></script>
+    <script src="./resources/js/main.js"></script>
+
+    <!--//END include file="../temp/javascriptLink.jsp -->
+    <script>
+        // jsp include 기능을 임시로 구현
+        tempIcluder( '#navInclude', './include/nav.html' );
+        tempIcluder( '#asideInclude', './include/aside.html' );
+        tempIcluder( '#footerInclude', './include/footer.html' );
+
+        setMenu("m1-1");
+        selectSubsInfoAjax();
+
+        $(document).ready(function(){
+            $('.custom-file-input').on('change',function(){
+                console.log('chage');
+                //get the file name
+                var fileName = $(this).val();
+                console.log(fileName);
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        })
+
+        
+        
+    </script>
+</body>
+</html>
