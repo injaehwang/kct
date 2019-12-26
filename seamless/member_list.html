@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
-                                    <label class="col-md-2 mt5">검색구분</label>
+                                    <label class="col-md-2 mt5">조회</label>
                                     <div class="col-md-5">
                                         <select class="form-control form-control-sm">
                                             <option>선택</option>
@@ -100,31 +100,42 @@
                 </div>
                 <div class="card card-info">
                     <div class="card-header">
-                        <h1 class="card-title">가입자 : 총 <span>6</span> 명</h1>
+                        <h1 class="card-title">총 <span>6</span> 개</h1>
                     </div>
+                    
                     <div  id="tableInsert" class="card-body dataTables_wrapper">
+                        <div class="top_search_row">
+                            <label>
+                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                                    <option value="10">10건씩</option>
+                                    <option value="25">25건씩</option>
+                                    <option value="50">50건씩</option>
+                                    <option value="100">100건씩</option>
+                                </select>
+                            </label>
+                        </div>
                         <div class="row ">
                             <div class="col-sm-12">
                                 <table id="example2" class="table table-bordered table-hover" role="grid" >
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox"></th>
-                                            <th>고객명</th>
+                                            <th>RTE_NO</th>
                                             <th>서비스 번호</th>
-                                            <th>1st착신전환</th>
-                                            <th>2nd착신전환</th>
-                                            <th>3rd착신전환</th>
+                                            <th>1차 착신</th>
+                                            <th>2차 착신</th>
+                                            <th>3차 착신</th>
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr role="row" class="odd">
                                             <td><input type="checkbox"></td>
-                                            <td>가나다라</td>
-                                            <td>070-0000-0000</td>
+                                            <td>1111</td>
+                                            <td><a href="">070-0000-0000</a></td>
                                             <td>010-1111-1111</td>
-                                            <td>02-0000-0000</td>
-                                            <td>032-1111-1111</td>
+                                            <td></td>
+                                            <td></td>
                                             <td>2019-08-07</td>
                                         </tr>
                                     </tbody>

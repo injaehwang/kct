@@ -45,6 +45,9 @@
 <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+
+<!-- 추가 -->
+<link rel="stylesheet" href="./resources/plugins/jquery-ui/jquery-ui.css">
 <link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
@@ -244,6 +247,13 @@
         
         setMenu("m1-1");
         selectSubsInfoAjax();
+
+        $(document).ready(function(){
+
+            $(".datepicker_start").datepicker({ dateFormat: 'yy-mm-dd' });
+            $(".datepicker_end").datepicker({ dateFormat: 'yy-mm-dd' });
+
+        })
     </script>
 </body>
 </html>

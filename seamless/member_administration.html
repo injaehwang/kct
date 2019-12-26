@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>BIZ114</title>
+<title>SEAMLESS</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -38,18 +38,14 @@
 	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <!-- SweetAlert2 -->
+<!-- SweetAlert2 -->
 <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
-
-<!-- 추가 -->
-<link rel="stylesheet" href="./resources/plugins/jquery-ui/jquery-ui.css">
 <link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
-
         <!-- include file="../temp/nav.jsp -->
         <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
@@ -62,12 +58,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>안내방송 관리</h1>
+                            <h1>서비스 번호 대역 착신 설정</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">안내방송 관리</a></li>
-                                <li class="breadcrumb-item active">안내방송 관리</li>
+                                <li class="breadcrumb-item"><a href="/subs">가입자 대역 관리</a></li>
+                                <li class="breadcrumb-item active">가입자 대역 관리</li>
                             </ol>
                         </div>
                     </div>
@@ -81,30 +77,45 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
-                                    <label class="col-md-2 mt5">검색구분</label>
-                                    <div class="col-md-5">
-                                        <select class="form-control form-control-sm">
-                                            <option>선택</option>
-                                            <option>음원ID</option>
-                                            <option>음원명</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control form-control-sm">
+                                    <label class="col-md-2 mt5">서비스 번호 대역</label>
+                                    <div class="col-md-10">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-append">
+                                                <button type="button" class="btn btn-primary">조회</button>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <label class="col-md-2 mt5">등록일</label>
+                                    <label class="col-md-2 mt5">착신 번호</label>
                                     <div class="col-md-10">
-                                        <div class="between-date-wrap">
-                                            <div class="between-date-item between-date">
-                                                <input type="text" class="form-control form-control-sm datepicker_start">
-                                            </div>
-                                            <span class="between-date-item between-unit">~</span>
-                                            <div class="between-date-item between-date">
-                                                <input type="text" class="form-control form-control-sm datepicker_end">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-2 col-form-label text-sm-right">1차</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control form-control-sm" id="" value="">
+                                                    </div>  
+                                                </div>
+                                            </div> 
+                                            <div class="col-sm-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-2 col-form-label text-sm-right">2차</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control form-control-sm" id="" value="">
+                                                    </div>  
+                                                </div>
+                                            </div> 
+                                            <div class="col-sm-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-2 col-form-label text-sm-right">3차</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control form-control-sm" id="" value="">
+                                                    </div>  
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -113,47 +124,47 @@
                         </div>
                     </div>
                     <div class="card-footer bg-white text-center">
-                        <button type="button" class="btn btn-primary btn-lg">검색하기</button>
+                        <button type="button" class="btn btn-primary btn-lg">저장하기</button>
+                        <button type="button" class="btn btn-default btn-lg">취소</button>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card card-info">
                     <div class="card-header">
-                        <h1 class="card-title">
-                                안내방송 : 총 <span>12269</span> 건
-                        </h1>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">파일저장</button>
-                        </div>
+                        <h1 class="card-title">총 <span>6</span> 개</h1>
                     </div>
+                    
                     <div  id="tableInsert" class="card-body dataTables_wrapper">
+                        <div class="top_search_row">
+                            <label>
+                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                                    <option value="10">10건씩</option>
+                                    <option value="25">25건씩</option>
+                                    <option value="50">50건씩</option>
+                                    <option value="100">100건씩</option>
+                                </select>
+                            </label>
+                        </div>
                         <div class="row ">
                             <div class="col-sm-12">
                                 <table id="example2" class="table table-bordered table-hover" role="grid" >
                                     <thead>
                                         <tr>
-                                            <th>음원ID</th>
-                                            <th>음원명</th>
-                                            <th>생성일</th>
-                                            <th>미리듣기</th>
-                                            <th>대리점명</th>
-                                            <th>등록자</th>
-                                            <th>관리</th>
+                                            <th>RTE_NO</th>
+                                            <th>서비스 번호</th>
+                                            <th>1차 착신</th>
+                                            <th>2차 착신</th>
+                                            <th>3차 착신</th>
+                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr role="row" class="odd">
-                                            <td>BIZ00000000003</td>
-                                            <td>강릉시 강문동</td>
-                                            <td>2014-03-31</td>
-                                            <td>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-play-circle"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-pause"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-stop"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-arrow-alt-circle-down"></i></button>
-                                            </td>
+                                            <td>1111</td>
+                                            <td><a href="">070-0000-0000</a></td>
+                                            <td>010-1111-1111</td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>
+                                            <td>2019-08-07</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -170,9 +181,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt10 text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#guide_regist_modal">안내방송등록</button>
-                        </div>
 					</div>
                 </div>
                 <!-- /.content -->
@@ -181,69 +189,10 @@
         </div>
         <!--/. content-wrapper -->
         <!-- include file="../temp/footer.jsp -->
-        <footer class="main-footer">
-            (주)한국케이콤텔레콤 대표이사 신동선 04526 서울특별시 중구세종대로 50 흥국생명 7층
-            </br>
-            <strong>Copyright &copy; 2014-2019 KCT</strong>
-            All rights reserved.
-            
-        </footer>
-        <!-- include file="../temp/footer.jsp -->
         <div id="footerInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
         
     </div>
     <!--/. wrapper -->
-    <!-- #guide_regist_modal Modal -->
-    <div class="modal fade" id="guide_regist_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">안내방송 등록</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-sm table-bordered table-hover">
-                        <tbody>
-                            <tr>
-                                <th>음원명</th>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-append">
-                                            <button type="button" class="btn btn-primary">중복확인</button>
-                                        </span>
-                                    </div>
-                                    <p class="form_desc">중복확인을 수행해주세요.</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>안내방송문구</th>
-                                <td>
-                                    <textarea class="form-control">
-                                    </textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>미리듣기</th>
-                                <td>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-play-circle"></i></button>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-pause"></i></button>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-stop"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary">등록</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// #guide_regist_modal Modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -289,11 +238,9 @@
     <script src="./resources/js/c_event.js"></script>
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
-    <script src="./resources/plugins/jquery-ui/jquery-ui.js"></script>
     <script src="./resources/js/main.js"></script>
     <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
-
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
@@ -301,13 +248,6 @@
 
         setMenu("m1-1");
         selectSubsInfoAjax();
-
-        $(document).ready(function(){
-
-            $(".datepicker_start").datepicker({ dateFormat: 'yy-mm-dd' });
-            $(".datepicker_end").datepicker({ dateFormat: 'yy-mm-dd' });
-
-        })
     </script>
 </body>
 </html>

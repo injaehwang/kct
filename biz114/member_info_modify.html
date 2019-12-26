@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>SEAMLESS</title>
+<title>BIZ114</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -19,7 +19,7 @@
 	href="./resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
-	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">   
+	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- JQVMap -->
 <link rel="stylesheet" href="./resources/plugins/jqvmap/jqvmap.min.css">
 <!-- Theme style -->
@@ -37,18 +37,18 @@
 <link rel="stylesheet"
 	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="./resources/dist/css/custom.css">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
+
         <!-- include file="../temp/nav.jsp -->
         <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
@@ -61,12 +61,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>대량 데이터 관리</h1>
+                            <h1>가입자 상세정보</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">대량 데이터 관리</a></li>
-                                <li class="breadcrumb-item active">대량 데이터 관리</li>
+                                <li class="breadcrumb-item"><a href="/subs">가입자 관리</a></li>
+                                <li class="breadcrumb-item active">가입자 상세정보</li>
                             </ol>
                         </div>
                     </div>
@@ -76,30 +76,50 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">대량 데이터 업로드</h1>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <label class="col-md-2 mt5">파일등록</label>
-                                    <div class="col-md-8">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
-                                    </div>
-                                </div>
+                    <div  id="" class="card-body dataTables_wrapper">
+                        <div class="row ">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover" role="grid" >
+                                    <tr>
+                                        <th>대표 안심번호</th>
+                                        <td>TEST111</td>
+                                        <th>가입자 명</th>
+                                        <td>홍길*</td>
+                                    </tr>
+                                    <tr>
+                                        <th>상호명</th>
+                                        <td colspan="3">BIZ114</td>
+                                    </tr>
+                                    <tr>
+                                        <th>주소</th>
+                                        <td colspan="3">경기도 성남시 수정구 시흥동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>연락처</th>
+                                        <td>0909999***</td>
+                                        <th>E-mail</th>
+                                        <td>hong@abc.</td>
+                                    </tr>
+                                    <tr>
+                                        <th>고객상태</th>
+                                        <td>
+                                            <select class="form-control form-control-sm">
+                                                <option>정상</option>
+                                                <option>일시정지</option>
+                                            </select>
+                                        </td>
+                                        <th>등록일</th>
+                                        <td>2019-08-07</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer bg-white text-center">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_regist_modal">등록하기</button>
-                        <button type="button" class="btn btn-default btn-lg">취소</button>
+                        <div class="text-right">
+                            <button class="btn btn-primary">수정</button>
+                            <button class="btn btn-default">취소</button>
+                        </div>
                     </div>
                 </div>
-                
                 <!-- /.content -->
             </section>
             <!-- Control Sidebar -->
@@ -110,29 +130,6 @@
         
     </div>
     <!--/. wrapper -->
-    <!-- file_regist_modal -->
-    <div class="modal" id="file_regist_modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">파일 포맷 오류<!-- 파일 크기 오류 --></h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-              <p class="alert-text">원인 : CSV(Comma Separated Values) 형식이 아님</p>
-              <!-- <p class="alert-text">원인 : 500KB 이상은 등록할 수 없습니다.</p> -->
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    <!--//# file_regist_modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -179,9 +176,9 @@
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
     <script src="./resources/js/main.js"></script>
-
     <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
+
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
@@ -189,18 +186,6 @@
 
         setMenu("m1-1");
         selectSubsInfoAjax();
-
-        $(document).ready(function(){
-            $('.custom-file-input').on('change',function(){
-                console.log('chage');
-                //get the file name
-                var fileName = $(this).val();
-                console.log(fileName);
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-        })
-        
     </script>
 </body>
 </html>

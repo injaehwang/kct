@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>SEAMLESS</title>
+<title>BIZ114</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -19,7 +19,7 @@
 	href="./resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
-	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">   
+	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- JQVMap -->
 <link rel="stylesheet" href="./resources/plugins/jqvmap/jqvmap.min.css">
 <!-- Theme style -->
@@ -37,18 +37,20 @@
 <link rel="stylesheet"
 	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="./resources/dist/css/custom.css">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+<!-- 추가 -->
+<link rel="stylesheet" href="./resources/plugins/jquery-ui/jquery-ui.css">
+<link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
+
         <!-- include file="../temp/nav.jsp -->
         <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
@@ -61,12 +63,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>대량 데이터 관리</h1>
+                            <h1>서비스 상세 정보</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">대량 데이터 관리</a></li>
-                                <li class="breadcrumb-item active">대량 데이터 관리</li>
+                                <li class="breadcrumb-item"><a href="/subs">가입자 관리</a></li>
+                                <li class="breadcrumb-item active">서비스 상세 정보</li>
                             </ol>
                         </div>
                     </div>
@@ -76,27 +78,35 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">대량 데이터 업로드</h1>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <label class="col-md-2 mt5">파일등록</label>
-                                    <div class="col-md-8">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
-                                    </div>
-                                </div>
+                    <div  id="" class="card-body dataTables_wrapper">
+                        <div class="row ">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover" role="grid" >
+                                    <colgroup>
+                                        <col style="width:25%;" />
+                                        <col style="width:75%;" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>070번호</th>
+                                            <td>0701001001</td>
+                                        </tr>
+                                        <tr>
+                                            <th>착신 번호</th>
+                                            <td><input type="text" class="form-control form-control-sm" placeholder="01010010001"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>주소 (안내동)</th>
+                                            <td><input type="text" class="form-control form-control-sm" placeholder="서울 구로구 디지털로"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer bg-white text-center">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_regist_modal">등록하기</button>
-                        <button type="button" class="btn btn-default btn-lg">취소</button>
+                        <div class="text-right">
+                            <a href="service_info_modify.html" class="btn btn-warning">수정</a>
+                            <button type="button" class="btn btn-danger">취소</button>
+                        </div>                        
                     </div>
                 </div>
                 
@@ -106,33 +116,16 @@
         </div>
         <!--/. content-wrapper -->
         <!-- include file="../temp/footer.jsp -->
-        <div id="footerInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
-        
+        <footer class="main-footer">
+            (주)한국케이콤텔레콤 대표이사 신동선 04526 서울특별시 중구세종대로 50 흥국생명 7층
+            </br>
+            <strong>Copyright &copy; 2014-2019 KCT</strong>
+            All rights reserved.
+            
+        </footer>
+        <!--//END include file="../temp/footer.jsp -->
     </div>
     <!--/. wrapper -->
-    <!-- file_regist_modal -->
-    <div class="modal" id="file_regist_modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">파일 포맷 오류<!-- 파일 크기 오류 --></h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-              <p class="alert-text">원인 : CSV(Comma Separated Values) 형식이 아님</p>
-              <!-- <p class="alert-text">원인 : 500KB 이상은 등록할 수 없습니다.</p> -->
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    <!--//# file_regist_modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -179,28 +172,18 @@
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
     <script src="./resources/js/main.js"></script>
-
     <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
+
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
         tempIcluder( '#footerInclude', './include/footer.html' );
-
+        
         setMenu("m1-1");
         selectSubsInfoAjax();
 
-        $(document).ready(function(){
-            $('.custom-file-input').on('change',function(){
-                console.log('chage');
-                //get the file name
-                var fileName = $(this).val();
-                console.log(fileName);
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-        })
-        
+       
     </script>
 </body>
 </html>

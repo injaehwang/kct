@@ -29,4 +29,6 @@ a.logo-link { }
 a.logo-link span { display: block; padding-left: 50px; }
 .brand-link.text-sm .brand-image, .text-sm .brand-link .brand-image {margin-top: -5px;}
 .wrapper .content-wrapper { min-height: calc( 100vh - 7.3rem ) !important; }
+.inline-radio-wrap label{margin-right:10px;}
+.inline-radio-wrap input[type='radio']{margin-right:3px;position:relative;top:1px;}
 

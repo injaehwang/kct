@@ -62,7 +62,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>가입자 상세정보</h1>
+                            <h1>가입자 등록</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -78,41 +78,44 @@
             <section class="content">
                 <div class="card card-info">
                     <div  id="" class="card-body dataTables_wrapper">
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
-                                    <tr>
-                                        <th>고객번호</th>
-                                        <td colspan="3">
-                                            <div class="col-md-3"><input type="text" class="form-control form-control-sm"></div>
-                                            <div class="col-md-3"><button class="btn btn-sm btn-default">중복확인</button></div>
-                                            <div class="col-md-6">중복확인을 수행해주세요.</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>가입자명</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <th>상호명</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소</th>
-                                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>연락처</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <th>E-mail</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover" role="grid" >
+                                <tr>
+                                    <th>고객번호</th>
+                                    <td>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-append">
+                                                <button type="button" class="btn btn-primary">중복확인</button>
+                                            </span>
+                                        </div>
+                                        <p class="form_desc">중복확인을 수행해주세요.</p>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <th>가입자명</th>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <th>상호명</th>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                                </tr>
+                                <tr>
+                                    <th>연락처</th>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <th>E-mail</th>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary">고객등록</button>
-                            <button class="btn btn-default">서비스등록</button>
-                            <button class="btn btn-info">목록</button>
-                        </div>
+                    </div>
+                    <div class="card-footer bg-white text-right">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#essential_error_modal">고객등록</button>
+                        <button class="btn btn-default">서비스등록</button>
+                        <button class="btn btn-info">목록</button>
                     </div>
                 </div>
                 <!-- /.content -->
@@ -172,6 +175,26 @@
     <script src="./resources/js/config.js"></script>
     <script src="./resources/js/main.js"></script>
     <!--//END include file="../temp/javascriptLink.jsp -->
+    <!-- essential_error_modal -->
+    <div class="modal fade" id="essential_error_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">필수 필드 입력 오류</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb0">원인 : 고객번호 및 가입자명, 상호명은 반드시 입력해야 합니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// essential_error_modal -->
     <script>
 
         // jsp include 기능을 임시로 구현

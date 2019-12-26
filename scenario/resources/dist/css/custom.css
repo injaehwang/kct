@@ -36,6 +36,8 @@ a.logo-link span { display: block; padding-left: 50px; }
 .btn-minus{color: #dc3545;background-color:transparent;border:0;}
 .btn-minus .fas{font-size:25px;}
 .bg-gray-point{background:#f7f7f7;}
+.inline-radio-wrap label{margin-right:10px;}
+.inline-radio-wrap input[type='radio']{margin-right:3px;position:relative;top:1px;}
 
 
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>SEAMLESS</title>
+<title>한국케이블텔레콤</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -19,7 +19,7 @@
 	href="./resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
-	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">   
+	href="./resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- JQVMap -->
 <link rel="stylesheet" href="./resources/plugins/jqvmap/jqvmap.min.css">
 <!-- Theme style -->
@@ -46,93 +46,35 @@
   <!-- Toastr -->
   <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="./resources/dist/css/custom.css">
-<!--//END include file="../temp/link.jsp -->
-<body class="sidebar-mini layout-boxed text-sm">
-	<div class="wrapper">
-        <!-- include file="../temp/nav.jsp -->
-        <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
-        <!-- include file="../temp/aside.jsp -->
-        <div id="asideInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
-        
-        <!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>대량 데이터 관리</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">대량 데이터 관리</a></li>
-                                <li class="breadcrumb-item active">대량 데이터 관리</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-            </section>
-            <!-- Main content -->
-            <section class="content">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">대량 데이터 업로드</h1>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <label class="col-md-2 mt5">파일등록</label>
-                                    <div class="col-md-8">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white text-center">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_regist_modal">등록하기</button>
-                        <button type="button" class="btn btn-default btn-lg">취소</button>
-                    </div>
-                </div>
-                
-                <!-- /.content -->
-            </section>
-            <!-- Control Sidebar -->
+<!--//END include file="../temp/link.jsp -->
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>KCT</b>Web</a>
         </div>
-        <!--/. content-wrapper -->
-        <!-- include file="../temp/footer.jsp -->
-        <div id="footerInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
-        
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">회원 로그인하기</p>
+            <form action="" method="post">
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="id">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+                </div>
+            </form>
+            <div class="mt10">
+                <a href="" class="text-center ">ID/비밀번호 초기화</a>
+                <p class="mt5 text-sm">* ID/비밀번호를 잃으신 경우 ID/비밀번호 초기화를 통해 확인하실 수 있습니다.</p>
+            </div>
+        </div>
+        <!-- /.login-box-body -->
     </div>
     <!--/. wrapper -->
-    <!-- file_regist_modal -->
-    <div class="modal" id="file_regist_modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">파일 포맷 오류<!-- 파일 크기 오류 --></h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-              <p class="alert-text">원인 : CSV(Comma Separated Values) 형식이 아님</p>
-              <!-- <p class="alert-text">원인 : 500KB 이상은 등록할 수 없습니다.</p> -->
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    <!--//# file_regist_modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -178,28 +120,19 @@
     <script src="./resources/js/c_event.js"></script>
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
+    <!--//END include file="../temp/javascriptLink.jsp -->
+
     <script src="./resources/js/main.js"></script>
 
-    <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
+
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
         tempIcluder( '#footerInclude', './include/footer.html' );
 
-        setMenu("m1-1");
+        setMenu("m1-2");
         selectSubsInfoAjax();
-
-        $(document).ready(function(){
-            $('.custom-file-input').on('change',function(){
-                console.log('chage');
-                //get the file name
-                var fileName = $(this).val();
-                console.log(fileName);
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-        })
         
     </script>
 </body>
