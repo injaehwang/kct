@@ -35,7 +35,6 @@ function retrieveCallNumberList(){
       dataType:"json",
       contentType: "application/json; charset=UTF-8",
       success: function(result) {
-         var result = JSON.parse('[{"ua_no":"18771000","dest_no":"07011112222","dest_name":null,"dest_type":"2","cfu_flag":"1","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"07012345678","dest_name":null,"dest_type":"1","cfu_flag":"0","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"ARS_001","dest_name":null,"dest_type":"2","cfu_flag":"0","cfb_flag":"0","cfna_flag":"0","cfd_flag":"0"}]');
          scenarioData.callNumbers = [];
          result.forEach(function(e){
             if(!isNaN(+e.dest_no)){
@@ -49,7 +48,7 @@ function retrieveCallNumberList(){
       }
    });
 
-   // 임시
+   // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
    var result = JSON.parse('[{"ua_no":"18771000","dest_no":"07011112222","dest_name":null,"dest_type":"2","cfu_flag":"1","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"07012345678","dest_name":null,"dest_type":"1","cfu_flag":"0","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"ARS_001","dest_name":null,"dest_type":"2","cfu_flag":"0","cfb_flag":"0","cfna_flag":"0","cfd_flag":"0"}]');
    scenarioData.callNumbers = [];
    result.forEach(function(e){
@@ -71,20 +70,22 @@ function retrieveCallSongList(){
       dataType:"json",
       contentType: "application/json; charset=UTF-8",
       success: function(result) {
-         var result = JSON.parse('[{"ann_no":"1","user_num":"18771000","ann_name":"test","ann_desc":"시험중입니다","ann_type":"1","timestamp":"2019-12-26 21:21:31.0"},{"ann_no":"2","user_num":"18771000","ann_name":"test2","ann_desc":"시험중","ann_type":"2","timestamp":"2019-12-26 21:21:49.0"}]');
          scenarioData.callSongs = [];
          scenarioData.colorings = [];
+         console.log(result);
          result.forEach(function(e){
-            scenarioData.callSongs.push({label: e.ann_name, value: e.ann_no, data: e});
+            scenarioData.callSongs.push({label: e.ann_name, value: e.user_num, data: e});
             scenarioData.colorings.push({label: e.user_num, value: e.user_num, data: e});
          });
-         $callSongListoptions = templateSelectOptions(scenarioData.callNumbers);
+         $callSongListoptions = templateSelectOptions(scenarioData.callSongs);
+         $coloringListoptions = templateSelectOptions(scenarioData.colorings);
       },
       error: function (error) {
          toastr.error('작신번호 정보가 잘못되었습니다.')
       }
    });
 
+   // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
    var result = JSON.parse('[{"ann_no":"1","user_num":"18771000","ann_name":"test","ann_desc":"시험중입니다","ann_type":"1","timestamp":"2019-12-26 21:21:31.0"},{"ann_no":"2","user_num":"18771000","ann_name":"test2","ann_desc":"시험중","ann_type":"2","timestamp":"2019-12-26 21:21:49.0"}]');
    scenarioData.callSongs = [];
    scenarioData.colorings = [];
@@ -116,6 +117,7 @@ function retrieveScenarioList(){
       }
    });
 
+   // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
    setScenarioList();
 
 }
@@ -144,7 +146,7 @@ function templateScenario(data){
       html += '</tr>';
       html += '<tr class="scenarioDetailRow" data-ars_id="' + d.ars_id + '">';
 
-      html += '<td colspan="4" class="bg-gray-point add-row">';
+      html += '<td colspan="7" class="bg-gray-point add-row">';
       html += '   <div class="step-box-wrapper">';
       html += '      <table class="step-box-table">';
       html += '         <thead class="">';
@@ -207,7 +209,7 @@ function retrieveScenarioRow(ars_name, ars_id){
          toastr.error('작신번호 정보가 잘못되었습니다.')
       }
    });
-   // 임시
+   // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
    setScenarioRow(ars_id, null);
 
 }
@@ -215,8 +217,7 @@ function retrieveScenarioRow(ars_name, ars_id){
 function setScenarioRow( ars_id, data ){
    var $targetTr = $('tr.scenarioDetailRow[data-ars_id=' + ars_id + ']', $scenarioListBox ).addClass('on');
    var $targetTrSettingTable = $('table', $targetTr );
-   
-   
+      
    var data = data || JSON.parse('[{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"1","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07012345678","first_ann_id":null,"second_depth_digit":"0","second_digit_name":null,"second_dest_type":null,"second_dest_no":null,"second_ann_id":null,"third_depth_digit":"0","third_digit_name":null,"third_dest_type":null,"thirrd_dest_no":null,"third_ann_id":null},{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"2","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07011112222","first_ann_id":null,"second_depth_digit":"1","second_digit_name":null,"second_dest_type":"1","second_dest_no":"01011112222","second_ann_id":null,"third_depth_digit":"0","third_digit_name":null,"third_dest_type":null,"thirrd_dest_no":null,"third_ann_id":null},{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"3","first_digit_name":null,"first_dest_type":"1","first_dest_no":null,"first_ann_id":null,"second_depth_digit":"1","second_digit_name":null,"second_dest_type":"1","second_dest_no":"07012345678","second_ann_id":null,"third_depth_digit":"1","third_digit_name":null,"third_dest_type":"1","thirrd_dest_no":null,"third_ann_id":null}]');
    console.log(data);
    var parseData = {};
@@ -259,7 +260,7 @@ function setScenarioRow( ars_id, data ){
    })
 
    $('tbody', $targetTrSettingTable).remove();
-   $targetTrSettingTable.append( templateScenarioRow( parseData ) );
+   $targetTrSettingTable.append( '<tbody class="setting-box">' + templateScenarioRow( parseData ) + '</tbody>' );
    $('select', $targetTrSettingTable).each(function(){
       var $t = $(this);
       var v = $t.attr('value');
@@ -279,8 +280,9 @@ function templateSelectOptions( data ){
 
 function templateStep(step, data){
    // console.log(data);
-   var stepHtml = '<tbody class="setting-box">';
-   stepHtml += '<tr class="step-box step-' + step + ' adviser-selected">';
+   // var stepHtml = '<tbody class="setting-box">';
+   var stepHtml = '';
+   // stepHtml += '<tr class="step-box step-' + step + ' adviser-selected">';
    stepHtml += '<tr class="step-box step-' + step + '">';
    stepHtml += '   <td class="badge-box">';
    stepHtml += '      <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>';
@@ -317,8 +319,8 @@ function templateStep(step, data){
 
    stepHtml += '   </td>';
    stepHtml += '   <td class="btn-functions">';
-   stepHtml += '      <button class="btn-function btn-down" onclick="stepDepthShow(this);" data-step="1"><i class="fas fa-arrow-down"></i></button>';
-   stepHtml += '      <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>';
+   stepHtml += '      <button class="btn-function btn-down" data-step="' + step + '"><i class="fas fa-arrow-down"></i></button>';
+   stepHtml += '      <button class="btn-function btn-minus" data-step="' + step + '"><i class="fas fa-minus"></i></button>';
    stepHtml += '      <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>';
    stepHtml += '      <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>';
    stepHtml += '   </td>';
@@ -330,7 +332,7 @@ function templateStep(step, data){
    stepHtml += '      </div>';
    stepHtml += '   </td>';
    stepHtml += '</tr>';
-   stepHtml += '</tbody>';
+   // stepHtml += '</tbody>';
    return stepHtml;
 }
 
@@ -340,6 +342,7 @@ function templateScenarioRow(parseData){
    var html = '';
    for (var key in parseData) {
          var firstData = parseData[key];
+         html += '<tbody class="setting-box">';
          html += templateStep(1, firstData);
 
          for (var key in firstData.children){
@@ -353,8 +356,8 @@ function templateScenarioRow(parseData){
             }
 
          }
-
-         html += '<tbody class="spacer"><tr><td colspan="4"></td></tr></tbody>';
+         html += '</tbody>';
+         html += '<tbody class="spacer"><tr><td colspan="7"></td></tr></tbody>';
          
    }
 
@@ -388,8 +391,9 @@ function eventBind(){
    .on('click', '.addStep', function(){
       console.log('단계추가');
       $('tr.scenarioDetailRow.on table.step-box-table').append( 
-         templateStep(1, {depth_digit: 0, digit_name: null, dest_type: 1, dest_no: 0, ua_no: 0}) 
-         + '<tbody class="spacer"><tr><td colspan="4"></td></tr></tbody>'
+         '<tbody class="setting-box">'
+         + templateStep(1, {depth_digit: 0, digit_name: null, dest_type: 1, dest_no: 0, ua_no: 0}) 
+         + '</tbody><tbody class="spacer"><tr><td colspan="7"></td></tr></tbody>'
       );
    })
 
@@ -406,8 +410,39 @@ function eventBind(){
       });
 
       console.log( saveData );
-      
+
+   })
+
+   .on('click', 'button.btn-function.btn-down', function(){
+
+      // 단계 스텝 추가
+      var $t = $(this);
+      var thisStep = $t.attr('data-step');
+      var nextStepClass = 'thisStep-'+(+thisStep+1);
+      var $newStep = $(templateStep(+thisStep+1, {depth_digit: 0, digit_name: null, dest_type: 1, dest_no: 0, ua_no: 0}))
+      var $targetTr = $t.closest('tr').nextUntil('tr.step-box.step-'+(+thisStep+2)).first();
+
+      $targetTr.length ? $targetTr.before( $newStep ) : $t.closest('tr').after($newStep);
+
    })
    
+   .on('click', 'button.btn-function.btn-minus', function(){
+
+      // 단계 스텝 삭제
+      var $t = $(this);
+      var thisStep = $t.attr('data-step');
+      // $t.closest('tr').remove();
+
+      console.log(thisStep);
+      if(thisStep<3){
+         // console.log('remove all!');
+         $t.closest('tr').nextUntil('tr.step-box.step-'+(+thisStep)).remove();
+      }
+
+      $t.closest('tr').remove();
+
+      
+
+   })
 }
 
