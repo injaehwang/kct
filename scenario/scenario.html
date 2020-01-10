@@ -79,7 +79,7 @@ table .add-row {padding: 0.4rem 0.75rem;}
 
 .btn-function {width: 40px; height: 26px; line-height: 26px; border-radius: 4px;}
 .btn-function.btn-down {background: #0069d9 !important;}
-.btn-function.btn-minus {background: #dc3545 !important;}
+.btn-function.btn-minus {background: #dc3545 !important; display: none;}
 .btn-function.btn-adv-setting {background: #28a745 !important; margin-left: 6px;}
 .btn-function.btn-adv-setting.cancelable {background: #d4970e !important; margin-left: 6px;}
 .btn-function i {color: #fff !important; font-size: 18px !important;}
@@ -88,7 +88,10 @@ table .add-row {padding: 0.4rem 0.75rem;}
 .adviser-status {display: none; position: absolute; left: -27px; top: -1px; border-bottom-left-radius: 4px; border-top-left-radius: 4px;}
 .adviser-status button {color: #fff; padding: 3px 6px;}
 .step-box.step-1 .adviser-status {background: #28a745;}
+.step-box.step-1.deletable .btn-function.btn-minus {display: inline-block;}
 .step-box.step-2 .adviser-status {background: #148192;}
+.step-box.step-2.deletable .btn-function.btn-minus {display: inline-block;}
+.step-box.step-3 .btn-function.btn-minus {display: inline-block; margin-left: 44px;}
 .adviser-selected {background: #d7eef1;}
 .adviser-selected .adviser-status {display: block;}
 .adviser-selected .btn-adv-setting {display: none;}
@@ -101,16 +104,16 @@ table .add-row {padding: 0.4rem 0.75rem;}
 .table{table-layout:fixed;}
 .table-cols::after {content:''; display: block; width: 100%; clear: both;}
 .step-box-table{width:100%;}
-.step-box-table tbody {border: 1px solid #666;}
+.step-box-table tbody {border-bottom: 1px solid #666;}
 .step-box-table thead th{border-bottom:0;padding:0.8rem 0.75rem;}
 table thead th{white-space:nowrap;}
 .step-box-table th, .step-box-table td{border:0;}
 .step-box-table .badge-box {width: 6%; text-align: right; position:relative;}
 .step-box-table .number {width: 8%;}
-.step-box-table .number-name {width: 12%;}
-.step-box-table .number-type {width: 12%;}
-.step-box-table .select-recept {width: 12%;}
-.step-box-table .btn-functions {width: 15%;}
+.step-box-table .number-name {width: 20%;}
+.step-box-table .number-type {width: 17%;}
+.step-box-table .select-recept {width: 23%;}
+.step-box-table .btn-functions {width: 12%; text-align: left;}
 .step-box-table .cs-info {width: 20%;}
 .step-box-table .btn-functions > * {vertical-align: middle;}
 .step-box-table .btn-functions .adv-select-box {display: inline-block; width: 60%; margin-left: 2%; padding-left: 2%; border-left: 1px solid #eee;}
@@ -119,8 +122,9 @@ table thead th{white-space:nowrap;}
 .step-box-table .btn-functions .adv-select-box select:nth-child(2) {width: 50%; margin-right: 4%;}
 .step-box-table .btn-functions .adv-select-box select {width: 36%;}
 .step-box-table .select-recept select {display: none;}
-.step-box-table .select-recept[data-selectType="select-1"] select.callType {display: inline-block;}
-.step-box-table .select-recept[data-selectType="select-2"] select.introType {display: inline-block;}
+.step-box-table .select-recept[data-selectType="select-2"] select.callType {display: inline-block;}
+.step-box-table .select-recept[data-selectType="select-1"] select.introType {display: inline-block;}
+.step-box-table .select-recept[data-selectType="select-1"] select {width: 49%;}
 
 .table tbody + tbody {border-top: 1px solid #666;}
 .table tbody.spacer {border: none !important;}
@@ -130,10 +134,19 @@ table thead th{white-space:nowrap;}
 .add-step-box button {}
 
 #scenarioListBox {}
+#scenarioListBox .retrieveScenarioRow.expand {color: #0069d9;}
+#scenarioListBox .retrieveScenarioRow.fold {color: #17a2b8; display: none;}
+#scenarioListBox tr.expand .retrieveScenarioRow.expand {display: none;}
+#scenarioListBox tr.expand .retrieveScenarioRow.fold {display: inline-block;}
+
 #scenarioListBox .scenarioDetailRow {display: none;}
 #scenarioListBox .scenarioDetailRow.on {display: table-row;}
+#scenarioListBox > tr > td:first-child {text-align: center;}
 
 #toast-container>.toast-error {display: none !important;}
+
+.scenarioSetting {}
+.scenarioSetting .settingApply {margin-top: -4px;}
 
 /* .col-md-1 {flex: 0 0 7% !important; max-width: 7% !important;} */
 
@@ -177,383 +190,8 @@ table thead th{white-space:nowrap;}
             </section>
             <!-- Main content -->
             <section class="content">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">시나리오 리스트</h1>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="">
-                                    <table id="example2" class="table table-bordered" role="grid" >
-                                        <colgroup>
-                                            <col style="width:10%;">
-                                            <col style="width:50%;">
-                                            <col style="width:20%;">
-                                            <col style="width:20%;">
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>시나리오명</th>
-                                                <th>생성일</th>
-                                                <th class="text-center">설정</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="scenarioListBox">
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>제품고장 신고 시나리오</td>
-                                                <td>2019-12-17</td>
-                                                <td class="text-center">
-                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="7" class="bg-gray-point add-row">
-                                                    <div class="step-box-wrapper">
-                                                        <table class="step-box-table">
-                                                            <thead class="">
-                                                                <tr class="step-box thead-box">
-                                                                    <th class="badge-box">
-                                                                        단계
-                                                                    </th>
-                                                                    <th class="number">
-                                                                        번호
-                                                                    </th>
-                                                                    <th class="number-name">
-                                                                        번호명
-                                                                    </th>
-                                                                    <th class="number-type">
-                                                                        착신유형
-                                                                    </th>
-                                                                    <th class="select-recept">
-                                                                        착신정보
-                                                                    </th>
-                                                                    <th class="btn-functions">
-                                                                        단계 기능
-                                                                    </th>
-                                                                    <th class="cs-info">
-                                                                        상담원 연결 번호
-                                                                    </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="setting-box">
-                                                                <tr class="step-box step-1 adviser-selected">
-                                                                    <td class="badge-box">
-                                                                        <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
-                                                                        <span class="badge badge-success text-sm">1단계</span>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>0</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="step-box step-2">
-                                                                    <td class="badge-box">
-                                                                        <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
-                                                                        <div>
-                                                                            <span class="badge badge-success text-sm">2단계</span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="step-box step-2 adviser-selected">
-                                                                    <td class="badge-box">
-                                                                        <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
-                                                                        <div>
-                                                                            <span class="badge badge-success text-sm">2단계</span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>0</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="step-box step-3">
-                                                                    <td class="badge-box">
-                                                                        <span class="badge badge-success text-sm">3단계</span>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                            <tbody class="spacer"><tr><td colspan="7"></td></tr></tbody>
-                                                            <tbody class="setting-box">
-                                                                <tr class="step-box step-1">
-                                                                    <td class="badge-box">
-                                                                        <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
-                                                                        <span class="badge badge-success text-sm">1단계</span>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="step-box step-2 adviser-selected">
-                                                                    <td class="badge-box">
-                                                                        <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>
-                                                                        <div>
-                                                                            <span class="badge badge-success text-sm">2단계</span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="step-box step-3">
-                                                                    <td class="badge-box">
-                                                                        <span class="badge badge-success text-sm">3단계</span>
-                                                                    </td>
-                                                                    <td class="number">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="number-name">
-                                                                        <input type="text" class="form-control form-control-sm">
-                                                                    </td>
-                                                                    <td class="number-type">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="select-recept">
-                                                                        <select class="form-control form-control-sm">
-                                                                            <option>선택하세요</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="btn-functions">
-                                                                        <button class="btn-function btn-down" data-step="1"><i class="fas fa-arrow-down"></i></button>
-                                                                        <button class="btn-function btn-minus" onclick="stepDepthHide(this);"><i class="fas fa-minus"></i></button>
-                                                                        <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>
-                                                                        <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>
-                                                                    </td>
-                                                                    <td class="cs-info">
-                                                                        <div class="adv-select-box">
-                                                                            <select class="form-control form-control-sm">
-                                                                                <option>0101015454</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="add-step-box">
-                                                        <button class="btn btn-primary"><i class="fas fa-plus"></i>  단계 추가</button>
-                                                    </div>
-
-                                                    </div>
-                                                    <div class="setting-box">
-                                                        <div class="adviser-box">
-                                                            <div class="row">
-                                                                <div class="col-md-12 col-xs-12 text-center">
-                                                                    <button class="btn btn-primary btn-sm">적용</button>
-                                                                    <button class="btn btn-danger btn-sm">취소</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="">
-                                                <td>2</td>
-                                                <td>배송, 주문 관련 문의 시나리오</td>
-                                                <td>2019-12-17</td>
-                                                <td class="text-center">
-                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>3</td>
-                                                <td>반품, 환불 관련 문의 시나리오</td>
-                                                <td>2019-12-17</td>
-                                                <td class="text-center">
-                                                    <button class="btn-down"><i class="fas fa-plus-circle"></i></button>
-                                                </td>
-                                            </tr>
-    
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-info">
+                <div class="card card-info scenarioSetting">
                     <div class="card-header">
                         <h1 class="card-title">시나리오 상세 설정</h1>
                     </div>
@@ -566,19 +204,64 @@ table thead th{white-space:nowrap;}
                                         <input type="text" class="form-control form-control-sm">
                                     </div>
                                     <label class="col-md-2 mt5">대표 인사말(음원)</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <select class="form-control form-control-sm">
                                             <option>선택하세요</option>
                                         </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-primary btn-sm settingApply">적용</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-white text-center">
+                    <!-- <div class="card-footer bg-white text-center">
                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_regist_modal">적용하기</button>
+                    </div> -->
+                </div>
+
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h1 class="card-title">시나리오 리스트</h1>
+                        <div style="text-align: right">
+                            <button type="button" class="btn btn-default deleteScenarioRow">삭제</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="">
+                                    <table id="scenarioListTable" class="table table-bordered" role="grid" >
+                                        <colgroup>
+                                            <col style="width:5%;">
+                                            <col style="width:5%;">
+                                            <col style="width:50%;">
+                                            <col style="width:20%;">
+                                            <col style="width:20%;">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th><input class="checkAll" type="checkbox" /></th>
+                                                <th>No.</th>
+                                                <th>시나리오명</th>
+                                                <th>생성일</th>
+                                                <th class="text-center">설정</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="scenarioListBox">
+
+                                            <!-- 데이터 들어오는 부분 -->
+    
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <!-- /.content -->
             </section>
             <!-- Control Sidebar -->
@@ -636,7 +319,8 @@ table thead th{white-space:nowrap;}
     <script src="./resources/js/config.js"></script>
     <script src="./resources/js/main.js"></script>
 
-    <script src="./resources/js/scenario.js"></script>
+    <script src="./resources/js/lodash-4.17.15.js"></script>
+    <script src="./resources/js/scenario_back_0104.js"></script>
 
     <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
@@ -645,7 +329,7 @@ table thead th{white-space:nowrap;}
         tempIcluder( '#asideInclude', './include/aside.html' );
         tempIcluder( '#footerInclude', './include/footer.html' );
 
-        setMenu("m1-1");
+        // setMenu("m1-1");
         selectSubsInfoAjax();
 
         $(document).ready(function(){

@@ -86,7 +86,7 @@
                 <div class="card card-info">
                     <div class="card-header"><h1 class="card-title">설정문자</h1></div>
                     <div class="card-body">
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control textarea100"></textarea>
                     </div>
                 </div>
                 <div class="card card-info">
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col-sm-2 col-xs-12">
                                 <textarea class="phone-copy-textarea form-control height-sm" onKeyUp="javascript:fnChkByte(this,'80')"></textarea>
-                                <p class="byte-wrap mt5 text-right"><span class="byte-current">0</span>&#47;<span class="byte-max">80</span></p>
+                                <p class="byte-wrap mt5 text-right">(<span class="byte-current">0</span>&#47;<span class="byte-max">80</span>)byte</p>
                                 <button type="button" class="btn btn-danger btn-block btn-lg mt10" onclick="">다시쓰기</button>
                             </div>
                             <div class="col-sm-1 text-center">
@@ -109,8 +109,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-white text-center">
-                    </div>
                 </div>
                 <!-- /.content -->
             </section>
@@ -122,7 +120,28 @@
 
     </div>
     <!--/. wrapper -->
-
+    <!-- byte_over_modal -->
+    <div class="modal fade" id="byte_over_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">문자 입력 크기 제한</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p class="alert-text">원인 : 80byte 이상은 저장이 되지 않습니다.</p>
+                </div>
+            
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//# byte_over_modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -211,7 +230,7 @@
             }
 
             if(rbyte > maxByte){
-                alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+                $('#byte_over_modal').modal('show'); //모달 호출    
                 str2 = str.substr(0,rlen);   //문자열 자르기
                 obj.value = str2;
                 fnChkByte(obj, maxByte);

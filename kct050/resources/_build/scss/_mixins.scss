@@ -358,15 +358,11 @@
   .bg-#{$name} {
     background-color: #{$color} !important;
 
-    &,
-    > a {
-      color: color-yiq($color) !important;
-    }
+    
 
     &.btn {
       &:hover {
         border-color: darken($color, 10%);
-        color: darken(color-yiq($color), 7.5%);
       }
 
       &:not(:disabled):not(.disabled):active,

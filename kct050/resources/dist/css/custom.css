@@ -29,3 +29,4 @@ a.logo-link span { display: block; padding-left: 50px; }
 .phone-wrapper{border: 1px solid #ccc;padding: 10px;border-radius: 10px;background: #f7f7f7;}
 .phone-wrapper-content{background:#fff;border:1px solid #ced4da;height: 230px;padding:10px;font-size:17px;}
 .phone-change-right{font-size: 77px;margin-top: 70px;}
+textarea.textarea100{height:100px;resize:none;}

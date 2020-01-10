@@ -54,14 +54,14 @@ function retrieveCallNumberList(){
    });
 
    // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // var result = JSON.parse('[{"ua_no":"18771000","dest_no":"07011112222","dest_name":null,"dest_type":"2","cfu_flag":"1","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"07012345678","dest_name":null,"dest_type":"1","cfu_flag":"0","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"ARS_001","dest_name":null,"dest_type":"2","cfu_flag":"0","cfb_flag":"0","cfna_flag":"0","cfd_flag":"0"}]');
-   // scenarioData.callNumbers = [];
-   // result.forEach(function(e){
-   //    if(!isNaN(+e.dest_no)){
-   //       scenarioData.callNumbers.push({label: e.dest_no, value: e.dest_no, data: e});
-   //    }
-   // })
-   // $callNumberListoptions = templateSelectOptions(scenarioData.callNumbers);
+   var result = JSON.parse('[{"ua_no":"18771000","dest_no":"07011112222","dest_name":null,"dest_type":"2","cfu_flag":"1","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"07012345678","dest_name":null,"dest_type":"1","cfu_flag":"0","cfb_flag":"1","cfna_flag":"1","cfd_flag":"0"},{"ua_no":"18771000","dest_no":"ARS_001","dest_name":null,"dest_type":"2","cfu_flag":"0","cfb_flag":"0","cfna_flag":"0","cfd_flag":"0"}]');
+   scenarioData.callNumbers = [];
+   result.forEach(function(e){
+      if(!isNaN(+e.dest_no)){
+         scenarioData.callNumbers.push({label: e.dest_no, value: e.dest_no, data: e});
+      }
+   })
+   $callNumberListoptions = templateSelectOptions(scenarioData.callNumbers);
 
 }
 
@@ -75,7 +75,6 @@ function retrieveCallSongList(){
       dataType:"json",
       contentType: "application/json; charset=UTF-8",
       success: function(result) {
-         var result = JSON.parse('[{"ann_no":"1","user_num":"18771000","ann_name":"test","ann_desc":"시험중입니다","ann_type":"1","timestamp":"2019-12-26 21:21:31.0"},{"ann_no":"2","user_num":"18771000","ann_name":"test2","ann_desc":"시험중","ann_type":"2","timestamp":"2019-12-26 21:21:49.0"}]');
          scenarioData.callSongs = [];
          scenarioData.colorings = [];
          console.log(result);
@@ -92,16 +91,16 @@ function retrieveCallSongList(){
    });
 
    // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // var result = JSON.parse('[{"ann_no":"1","user_num":"18771000","ann_name":"test","ann_desc":"시험중입니다","ann_type":"1","timestamp":"2019-12-26 21:21:31.0"},{"ann_no":"2","user_num":"18771000","ann_name":"test2","ann_desc":"시험중","ann_type":"2","timestamp":"2019-12-26 21:21:49.0"}]');
-   // scenarioData.callSongs = [];
-   // scenarioData.colorings = [];
-   // console.log(result);
-   // result.forEach(function(e){
-   //    scenarioData.callSongs.push({label: e.ann_name, value: e.user_num, data: e});
-   //    scenarioData.colorings.push({label: e.user_num, value: e.user_num, data: e});
-   // });
-   // $callSongListoptions = templateSelectOptions(scenarioData.callSongs);
-   // $coloringListoptions = templateSelectOptions(scenarioData.colorings);
+   var result = JSON.parse('[{"ann_no":"1","user_num":"18771000","ann_name":"test","ann_desc":"시험중입니다","ann_type":"1","timestamp":"2019-12-26 21:21:31.0"},{"ann_no":"2","user_num":"18771000","ann_name":"test2","ann_desc":"시험중","ann_type":"2","timestamp":"2019-12-26 21:21:49.0"}]');
+   scenarioData.callSongs = [];
+   scenarioData.colorings = [];
+   console.log(result);
+   result.forEach(function(e){
+      scenarioData.callSongs.push({label: e.ann_name, value: e.user_num, data: e});
+      scenarioData.colorings.push({label: e.user_num, value: e.user_num, data: e});
+   });
+   $callSongListoptions = templateSelectOptions(scenarioData.callSongs);
+   $coloringListoptions = templateSelectOptions(scenarioData.colorings);
    
 }
 
@@ -124,7 +123,7 @@ function retrieveScenarioList(){
    });
 
    // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // setScenarioList();
+   setScenarioList();
 
 }
 
@@ -137,8 +136,9 @@ function setScenarioList( data ){
 
 function templateScenario(data){
    
-   // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // var data = data || JSON.parse('[{"ua_no":"18771000","ars_id":"00000001","ars_name":"QWEEEQ_Test","ann_id":"1","ann_name":"test","timestamp":"2019-12-22 00:48:15.0"}]');
+   // 임시 tempdata
+   var data = data || JSON.parse('[{"ua_no":"18771000","ars_id":"00000001","ars_name":"QWEEEQ_Test","ann_id":"1","ann_name":"test","timestamp":"2019-12-22 00:48:15.0"}]');
+   
    var html = '';
    for(var i=0; i<data.length; i++){
       var d = data[i];
@@ -200,6 +200,9 @@ function templateScenario(data){
  */
 function retrieveScenarioRow(ars_name, ars_id){
 
+   console.log( ars_name );
+   console.log( ars_id );
+
    $.ajax({
       type: "POST",
       url: "/ars/sls",
@@ -214,7 +217,7 @@ function retrieveScenarioRow(ars_name, ars_id){
       }
    });
    // // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // setScenarioRow(ars_id, null);
+   setScenarioRow(ars_id, null);
 
 }
 
@@ -233,13 +236,13 @@ function setScenarioRow( ars_id, data ){
    var $targetTr = $('tr.scenarioDetailRow[data-ars_id=' + ars_id + ']', $scenarioListBox ).addClass('on');
    var $targetTrSettingTable = $('table', $targetTr );
       
-   // 가짜 데이터 - 황인재 쪽 에서 이재형 과장님쪽 rest 요청이 cors 로 안될때 붙이는 코드
-   // var data = data || JSON.parse('[{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"1","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07012345678","first_ann_id":null,"second_depth_digit":"0","second_digit_name":null,"second_dest_type":null,"second_dest_no":null,"second_ann_id":null,"third_depth_digit":"0","third_digit_name":null,"third_dest_type":null,"thirrd_dest_no":null,"third_ann_id":null},{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"2","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07011112222","first_ann_id":null,"second_depth_digit":"1","second_digit_name":null,"second_dest_type":"1","second_dest_no":"01011112222","second_ann_id":null,"third_depth_digit":"0","third_digit_name":null,"third_dest_type":null,"thirrd_dest_no":null,"third_ann_id":null},{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"00000001","first_depth_digit":"3","first_digit_name":null,"first_dest_type":"1","first_dest_no":null,"first_ann_id":null,"second_depth_digit":"1","second_digit_name":null,"second_dest_type":"1","second_dest_no":"07012345678","second_ann_id":null,"third_depth_digit":"1","third_digit_name":null,"third_dest_type":"1","thirrd_dest_no":null,"third_ann_id":null}]');
+   var data = data || JSON.parse('[{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"QWEEEQ_Test","first_depth_digit":"1","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07012345678","first_ann_id":"2","second_depth_digit":"1","second_digit_name":null,"second_dest_type":"1","second_dest_no":"07011112222","second_ann_id":"1","third_depth_digit":"0","third_digit_name":null,"third_dest_type":null,"third_dest_no":null,"third_ann_id":null},{"ua_no":"18771000","ars_name":"QWEEEQ_Test","ars_id":"QWEEEQ_Test","first_depth_digit":"1","first_digit_name":null,"first_dest_type":"1","first_dest_no":"07012345678","first_ann_id":"2","second_depth_digit":"2","second_digit_name":null,"second_dest_type":"1","second_dest_no":"07011112222","second_ann_id":"1","third_depth_digit":"","third_digit_name":null,"third_dest_type":null,"third_dest_no":null,"third_ann_id":null}]');
+   console.log(data);
    var parseData = {};
    
    data.forEach(function(d){
 
-      if(+d.first_depth_digit){
+      if(+d.first_depth_digit > -1){
          parseData[d.first_depth_digit] = {
             ua_no: d.ua_no,
             ars_name: d.ars_name,
@@ -249,18 +252,18 @@ function setScenarioRow( ars_id, data ){
             dest_type: d.first_dest_type,
             dest_no: d.first_dest_no,
             ann_id: d.first_ann_id,
-            children : {}
+            children : (d.first_depth_digit in parseData) ? $.extend(parseData[d.first_depth_digit].children, {}) : {}
          };   
-         if(+d.second_depth_digit){
+         if(+d.second_depth_digit > -1){
             parseData[d.first_depth_digit].children[d.second_depth_digit] = {
                depth_digit: d.second_depth_digit,
                digit_name: d.second_digit_name,
                dest_type: d.second_dest_type,
                dest_no: d.second_dest_no,
                ann_id: d.second_ann_id,
-               children: {}
+               children : (d.second_depth_digit in parseData[d.first_depth_digit].children) ? $.extend(parseData[d.first_depth_digit].children[d.second_depth_digit].children, {}) : {}
             };
-            if(+d.third_depth_digit){
+            if(+d.third_depth_digit > -1){
                parseData[d.first_depth_digit].children[d.second_depth_digit].children[d.third_depth_digit] = {
                   depth_digit: d.third_depth_digit,
                   digit_name: d.third_digit_name,
@@ -303,7 +306,10 @@ function templateSelectOptions( data, init ){
 }
 
 function templateStep(step, data, basicSelect){
+   // console.log(basicSelect);
+   // var stepHtml = '<tbody class="setting-box">';
    var stepHtml = '';
+   // stepHtml += '<tr class="step-box step-' + step + ' adviser-selected">';
    stepHtml += '<tr class="step-box step-' + step + '" data-step="' + step + '">';
    stepHtml += '   <td class="badge-box">';
    stepHtml += '      <div class="adviser-status"><button><i class="fas fa-phone"></i></button></div>';
@@ -311,6 +317,7 @@ function templateStep(step, data, basicSelect){
    stepHtml += '      <input type="hidden" name="step" value="' + step + '">';
    stepHtml += '   </td>';
    stepHtml += '   <td class="number">';
+   // stepHtml += '      <select class="form-control form-control-sm" name="depth_digit" value="' + (basicSelect ? basicSelect : data.depth_digit) + '">';
    stepHtml += '      <select class="form-control form-control-sm" name="depth_digit" value="' + (data.depth_digit) + '">';
    stepHtml += $templateSelectOptions;
    stepHtml += '      </select>';
@@ -342,8 +349,11 @@ function templateStep(step, data, basicSelect){
    stepHtml += '   <td class="btn-functions">';
    stepHtml += '      <button class="btn-function btn-down" data-step="' + step + '"><i class="fas fa-arrow-down"></i></button>';
    stepHtml += '      <button class="btn-function btn-minus" data-step="' + step + '"><i class="fas fa-minus"></i></button>';
+   // stepHtml += '      <button class="btn-function btn-adv-setting cancelable"><i class="fas fa-phone-slash"></i></button>';
+   // stepHtml += '      <button class="btn-function btn-adv-setting"><i class="fas fa-phone"></i></button>';
    stepHtml += '   </td>';
    stepHtml += '</tr>';
+   // stepHtml += '</tbody>';
    return stepHtml;
 }
 
@@ -481,6 +491,7 @@ function eventBind(){
          + '</tbody><tbody class="spacer"><tr><td colspan="7"></td></tr></tbody>'
       );
 
+      // $('tr.step-1 .number select', $newStep1).val( thisIndex ).trigger('change')
       $('tr.scenarioDetailRow.on table.step-box-table').append( $newStep1 );
 
       watchRowData[thisIndex] = {};
@@ -550,6 +561,7 @@ function eventBind(){
       // 단계 스텝 삭제
       var $t = $(this);
       var thisStep = $t.attr('data-step');
+      // $t.closest('tr').remove();
 
       if(thisStep<3){
          // console.log('remove all!');
@@ -594,7 +606,7 @@ function eventBind(){
       var originVal = $t.attr('value');
       var thisStep = $t.closest('tr.step-box').attr('data-step'); 
 
-      // $('option[selected="selected"]', $t).removeAttr('selected');
+      $('option[selected="selected"]', $t).removeAttr('selected');
 
       if( v > 0){
          var $closest = thisStep == 1 ? $t.closest('table.step-box-table') : (thisStep == 2 ? $t.closest('tbody.setting-box') : $t.closest('tr') );
@@ -644,8 +656,7 @@ function eventBind(){
          console.log(deleteList);
       }
 
-      console.log('deleteAnnList!');
-
+      console.log('deleteAnnList!!!');
 
    })
 }

@@ -78,52 +78,56 @@
                 <div class="card card-info">
                     <div class="card-header"><h1 class="card-title">가입자정보</h1></div>
                     <div class="card-body">
-                        <table id="" class="table table-bordered table-hover" role="grid" aria-describedby="example2_info">
-                            <tbody>
-                                <tr>
-                                    <th>대표안심번호</th>
-                                    <td>05080590000</td>
-                                </tr>
-                                <tr>
-                                    <th>안심번호대역</th>
-                                    <td>05080590000 ~ 05080599999</td>
-                                </tr>
-                                <tr>
-                                    <th>사업자이름</th>
-                                    <td>네트웍운용</td>
-                                </tr>
-                                <tr>
-                                    <th>아이디</th>
-                                    <td>05080590000</td>
-                                </tr>
-                                <tr>
-                                    <th>패스워드</th>
-                                    <td><input type="password" class="form-control" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>전화번호</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>이메일</th>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>가입일</th>
-                                    <td>2012/07/19</td>
-                                </tr>
-                                <tr>
-                                    <th>MSO</th>
-                                    <td>KCTB</td>
-                                </tr>
-                                <tr>
-                                    <th>SO</th>
-                                    <td>1009</td>
-                                </tr>                
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" aria-describedby="">
+                                <colgroup>
+                                    <col style="width:20%;" />
+                                    <col style="width:30%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:30%;" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>계정</th>
+                                        <td>
+                                            <input type="text" class="form-control" value="admin" disabled/>
+                                        </td>
+                                        <th>대표번호</th>
+                                        <td><input type="text" class="form-control" value="000000" disabled/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>비밀번호</th>
+                                        <td><input type="password" class="form-control" value="11111"/></td>
+                                        <th>확인</th>
+                                        <td><input type="password" class="form-control" value="11111"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>가입자명</th>
+                                        <td><input type="text" class="form-control" value="SuperAdmin"/></td>
+                                        <th>가입일</th>
+                                        <td><input type="text" class="form-control" value="2019-11-11" disabled/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>이메일</th>
+                                        <td><input type="text" class="form-control" value="aaa@naver.com"/></td>
+                                        <th>전화번호</th>
+                                        <td><input type="text" class="form-control" value="321321321"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>등급</th>
+                                        <td>
+                                            <selct class="form-control">
+                                                <option>SuperAdimn</option>
+                                            </selct>
+                                        </td>
+                                        <th></th>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-footer bg-white text-center">
+                    <div class="card-footer text-center">
                         <button type="button" class="btn btn-default btn-lg">취소</button>
                         <button type="button" class="btn btn-primary btn-lg">저장하기</button>
                     </div>
