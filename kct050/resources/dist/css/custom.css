@@ -4,14 +4,15 @@
 @font-face {font-family: 'NanumSquareR';src: url('../../../resources/dist/font/NanumSquareR.ttf');}
 @font-face {font-family: 'NanumSquareRoundR';src: url('../../../resources/dist/font/NanumSquareRoundR.ttf');}
 @font-face {font-family: 'NanumPen';src: url('../../../resources/dist/font/NanumPen.ttf');}
+
 body {margin: 0;font-family: "NanumSquareRoundR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;text-align: left;background-color: #fff;}
 .mt5{margin-top:5px;}
 .mt10{margin-top:10px;}
 .ml1{margin-left:1px;}
 .mb0{margin-bottom:0;}
 .mb5{margin-bottom:5px;}
+.fc_white{color:#ffffff !important;}
 .inline-block{display:inline-block;width:auto;}
-.card-footer .btn-lg{min-width:150px;}
 .between-date-wrap::after{display:block;clear:both;content:"";}
 .between-date-wrap .between-date-item{float:left;}
 .between-date-wrap .between-date{width:47%;}
@@ -30,3 +31,35 @@ a.logo-link span { display: block; padding-left: 50px; }
 .phone-wrapper-content{background:#fff;border:1px solid #ced4da;height: 230px;padding:10px;font-size:17px;}
 .phone-change-right{font-size: 77px;margin-top: 70px;}
 textarea.textarea100{height:100px;resize:none;}
+
+
+/* phone */
+.phone_message_wrap {background-color: #f7f7f7;border: 2px solid #ccc;height: 525px;border-radius: 15px;padding: 20px;cursor: default;padding-top: 10px;  }
+.phone_message_wrap #screen {background-color: #fff;position: absolute;width: 80%;left: 0;right: 0;top: 17%;margin: auto;height: 410px;border-radius: 10px;background-repeat: no-repeat;border: 1px solid #ccc;overflow: hidden;}
+.phone_message_wrap .company {margin-top: 0px;margin-bottom: 5px;font-size: 14pt;text-align: center;color: #666;}
+.phone_message_wrap #home {margin: 0 auto;margin-top: 428px;width: 40px;height: 40px;background-color: #f7f7f7;border: 1px solid #ccc;border-radius: 50%;cursor: pointer;box-shadow: 0 0 5px #ccc;  }
+.phone_message_wrap #home:active {box-shadow: 0 0 5px grey inset}  
+.phone_message_wrap .call-number {width: 99.5%;margin-top: -35px;text-align: center;padding-top: 50px;height: 100px;font-size: 36pt;float: left;color: green;border: 1px solid black;border-bottom: none;margin-left: -10px;margin-bottom: 0px;}
+.phone_message_wrap .power {background-color: #f7f7f7;width: 50px;height: 6px;border: 1px solid #ccc;position: absolute;margin-left: 60%;margin-top: -17px;border-top-right-radius: 5px;border-top-left-radius: 5px;cursor: pointer;}
+.phone_message_wrap .power:active {height: 4px;margin-top: -17px;  }
+.phone_message_wrap #navbar {height: 30px;display: block;opacity: 1;position: relative;margin-left: auto;cursor: pointer;margin-right: auto;  }
+.phone_message_wrap .battery {width: 30px;height: auto;float: right;margin-right: 10px;  }
+.phone_message_wrap #navbar #text {font-family: Segoe UI;font-size: 14pt;float: left;margin-left: 12px;margin-top: 2px;color: black;  }
+.phone_message_wrap .call-icon {width: 40px;height: auto;margin-top: 10px;margin-left: calc(50% - 30px);cursor: pointer;  }
+.phone_message_wrap #messagingScreen{margin-top: 10px;width: 90%;margin-left: auto;margin-right: auto;}
+.phone_message_wrap #phoneTextArea {width:100%;font-size:15px;resize: none;outline: none;height: 260px;overflow: hidden;border: 1px solid #ccc;padding: 4px;  }
+.phone_message_wrap .text-info {width: 84%;margin-left: -13px;resize: none;outline: none;height: 25px;margin-top: -35px;border: 1px solid grey;font-size: 14pt;font-family: Times;border-radius: 5px;padding-left: 5px;overflow-x: hidden;  }
+.phone_message_wrap .item_button_group::after{display:block;clear:both;content:"";}
+.phone_message_wrap .item_button_group .item_button{float:left;width:48%;margin-left:4%;margin-top:0;}
+.phone_message_wrap .item_button_group .item_button:first-child{margin-left:0;}
+@media screen and (min-width: 480px) {
+    .phone_message_wrap {width: 340px;margin-left:auto;margin-right:auto;}
+    .phone_message_wrap #screen {background-color: #fff;position: absolute;width:296px;margin: auto;}
+    .phone_message_wrap #navbar {width: 296px;height: 30px;}
+    .phone_message_wrap #messagingScreen{margin-top: 10px;width: 270px}
+    .phone_message_wrap .power {margin-left: 256px;}
+}
+
+@media screen and (min-width: 576px) {
+    .card-footer .btn-lg{min-width:150px;}
+}

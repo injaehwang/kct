@@ -112,11 +112,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-white text-center">
+                    <div class="card-footer text-center">
                         <button type="button" class="btn btn-primary btn-lg">검색하기</button>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card card-info">
                     <div class="card-header">
                         <h1 class="card-title">
                                 안내방송 : 총 <span>12269</span> 건
@@ -125,39 +125,37 @@
                             <button type="button" class="btn btn-default">파일저장</button>
                         </div>
                     </div>
-                    <div  id="tableInsert" class="card-body dataTables_wrapper">
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
-                                    <thead>
-                                        <tr>
-                                            <th>음원ID</th>
-                                            <th>음원명</th>
-                                            <th>생성일</th>
-                                            <th>미리듣기</th>
-                                            <th>대리점명</th>
-                                            <th>등록자</th>
-                                            <th>관리</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr role="row" class="odd">
-                                            <td>BIZ00000000003</td>
-                                            <td>강릉시 강문동</td>
-                                            <td>2014-03-31</td>
-                                            <td>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-play-circle"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-pause"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-stop"></i></button>
-                                                <button class="btn btn-xs btn-default"><i class="fas fa-arrow-alt-circle-down"></i></button>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div id="" class="card-body dataTables_wrapper">
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <thead>
+                                    <tr>
+                                        <th>음원ID</th>
+                                        <th>음원명</th>
+                                        <th>생성일</th>
+                                        <th>미리듣기</th>
+                                        <th>대리점명</th>
+                                        <th>등록자</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td>BIZ00000000003</td>
+                                        <td>강릉시 강문동</td>
+                                        <td>2014-03-31</td>
+                                        <td>
+                                            <button class="btn btn-xs btn-default"><i class="fas fa-play-circle"></i></button>
+                                            <button class="btn btn-xs btn-default"><i class="fas fa-pause"></i></button>
+                                            <button class="btn btn-xs btn-default"><i class="fas fa-stop"></i></button>
+                                            <button class="btn btn-xs btn-default"><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
@@ -170,10 +168,69 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt10 text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#guide_regist_modal">안내방송등록</button>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="button" class="btn btn-primary">안내방송등록</button>
+                    </div>
+                </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h1 class="card-title">안내 방송 등록</h1>
+                    </div>
+                    <div id="" class="card-body dataTables_wrapper">
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:25%" />
+                                    <col style="width:75%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>음원명</th>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-append">
+                                                    <button type="button" class="btn btn-primary">중복확인</button>
+                                                </span>
+                                            </div>
+                                            <p class="form_desc">중복확인을 수행해주세요.</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>안내방송문구</th>
+                                        <td>
+                                            <textarea class="form-control textarea100">
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>미리듣기</th>
+                                        <td>
+                                            <button class="btn btn-sm btn-default"><i class="fas fa-play-circle"></i></button>
+                                            <button class="btn btn-sm btn-default"><i class="fas fa-pause"></i></button>
+                                            <button class="btn btn-sm btn-default"><i class="fas fa-stop"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-					</div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                        <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                        <li class="paginate_button page-item next disabled" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="button" class="btn btn-default">취소</button>
+                    <button type="button" class="btn btn-primary">등록</button>
+                    </div>
                 </div>
                 <!-- /.content -->
             </section>
@@ -193,57 +250,6 @@
         
     </div>
     <!--/. wrapper -->
-    <!-- #guide_regist_modal Modal -->
-    <div class="modal fade" id="guide_regist_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">안내방송 등록</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-sm table-bordered table-hover">
-                        <tbody>
-                            <tr>
-                                <th>음원명</th>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-append">
-                                            <button type="button" class="btn btn-primary">중복확인</button>
-                                        </span>
-                                    </div>
-                                    <p class="form_desc">중복확인을 수행해주세요.</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>안내방송문구</th>
-                                <td>
-                                    <textarea class="form-control">
-                                    </textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>미리듣기</th>
-                                <td>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-play-circle"></i></button>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-pause"></i></button>
-                                    <button class="btn btn-xs btn-default"><i class="fas fa-stop"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary">등록</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// #guide_regist_modal Modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>

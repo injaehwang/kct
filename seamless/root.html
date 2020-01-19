@@ -75,15 +75,15 @@
                 <div class="card card-info">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="row">
-                                    <label class="col-md-2 mt5">조회</label>
-                                    <div class="col-md-5">
+                                    <label class="col-3 mt5">조회</label>
+                                    <div class="col-4">
                                         <select class="form-control form-control-sm">
                                             <option>루트 번호</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-5">
                                         <input type="text" class="form-control form-control-sm">
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                     <div class="card-header">
                         <h1 class="card-title">총 <span>254</span>개</h1>
                     </div>
-                    <div  id="tableInsert" class="card-body dataTables_wrapper">
+                    <div  id="" class="card-body dataTables_wrapper">
                         <div class="top_search_row">
                             <label>
                                 <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
@@ -110,27 +110,34 @@
                                 </select>
                             </label>
                         </div>
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
-                                    <thead>
-                                        <tr>
-                                            <th>동작</th>
-                                            <th>RTE_NO</th>
-                                            <th>RTE_NAME</th>
-                                            <th>USER_COUNT</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr role="row" class="odd">
-                                            <td><input type="checkbox"></td>
-                                            <td>1000</td>
-                                            <td>KCT구로</td>
-                                            <td>10</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:20%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:20%;" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>동작</th>
+                                        <th>RTE_NO</th>
+                                        <th>RTE_NAME</th>
+                                        <th>SSW NO</th>
+                                        <th>USER_COUNT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td><input type="checkbox"></td>
+                                        <td>1000</td>
+                                        <td>KCT구로</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
@@ -144,6 +151,64 @@
                             </div>
                         </div>
 					</div>
+                </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h1 class="card-title">루트 추가 설정</h1>
+                    </div>
+                    <div id="" class="card-body">
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover">
+                                <colgroup>
+                                    <col style="width:25%;" />
+                                    <col style="width:75%;" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>RTE ID</th>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-append">
+                                                    <button type="button" class="btn btn-primary">중복체크</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>RTE NAME</th>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>서비스 여부</th>
+                                        <td class="inline-radio-wrap">
+                                            <p>
+                                                <label class="el-switch">
+                                                    <span class="label">ON</span> : 
+                                                    <input type="checkbox">
+                                                    <span class="el-switch-style"></span>
+                                                </label>                                                    
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>C4 SSW NO</th>
+                                        <td>
+                                            <select class="form-control form-control-sm">
+                                                <option>선택</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">추가</button>
+                        <button class="btn btn-default">취소</button>
+                    </div>
                 </div>
                 <!-- /.content -->
             </section>

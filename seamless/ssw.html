@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>BIZ114</title>
+<title>SEAMLESS</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -37,20 +37,15 @@
 <link rel="stylesheet"
 	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
-
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="./resources/dist/css/custom.css">
-
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
-        
         <!-- include file="../temp/nav.jsp -->
         <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
@@ -63,12 +58,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>가입자 관리</h1>
+                            <h1>SSW 정보 관리</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">가입자 관리</a></li>
-                                <li class="breadcrumb-item active">가입자 관리</li>
+                                <li class="breadcrumb-item"><a href="/subs">SSW 정보 관리</a></li>
+                                <li class="breadcrumb-item active">SSW 정보 관리</li>
                             </ol>
                         </div>
                     </div>
@@ -80,90 +75,65 @@
                 <div class="card card-info">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="row">
-                                    <label class="col-md-2 mt5">검색구분</label>
-                                    <div class="col-md-5">
+                                    <label class="col-3 mt5">조회</label>
+                                    <div class="col-4">
                                         <select class="form-control form-control-sm">
-                                            <option>선택</option>
-                                            <option>고객번호</option>
-                                            <option>070</option>
-                                            <option>가입자명</option>
-                                            <option>MSO</option>
-                                            <option>대리점명</option>
+                                            <option>SSW 번호</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-5">
                                         <input type="text" class="form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <label class="col-md-2 mt5">등록일</label>
-                                    <div class="col-md-10">
-                                        <div class="between-date-wrap">
-                                            <div class="between-date-item between-date">
-                                                <input type="text" class="form-control form-control-sm datepicker_start">
-                                            </div>
-                                            <span class="between-date-item between-unit">~</span>
-                                            <div class="between-date-item between-date">
-                                                <input type="text" class="form-control form-control-sm datepicker_end">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="card-footer text-center">
+                    <div class="card-footer bg-white text-center">
                         <button type="button" class="btn btn-primary btn-lg">검색하기</button>
+                        <a href="ssw_plus_setting.html" class="btn btn-info btn-lg">추가하기</a>
                     </div>
                 </div>
                 <div class="card card-info">
                     <div class="card-header">
-                        <h1 class="card-title">
-                                서비스현황 : 총 <span>0</span> 건
-                        </h1>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">서비스등록</button>
-                            <button type="button" class="btn btn-default">파일등록</button>
-                            <button type="button" class="btn btn-default">파일저장</button>
-                        </div>
+                        <h1 class="card-title">총 <span>254</span>개</h1>
                     </div>
-                    <div  id="" class="card-body dataTables_wrapper">
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
-                                    <thead>
-                                        <tr>
-                                            <th><input type="checkbox"></th>
-                                            <th>070번호</th>
-                                            <th>착신번호</th>
-                                            <th>주소(안내동)</th>
-                                            <th>안내방송</th>
-                                            <th>SMS</th>
-                                            <th>등록일</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr role="row" class="odd">
-                                            <td><input type="checkbox"></td>
-                                            <td>01020039639</td>
-                                            <td>이동은</td>
-                                            <td>이동은테스트</td>
-                                            <td>0</td>
-                                            <td>T-Broad</td>
-                                            <td>김준연대리점</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div  id="tableInsert" class="card-body dataTables_wrapper">
+                        <div class="top_search_row">
+                            <label>
+                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                                    <option value="10">10건씩</option>
+                                    <option value="25">25건씩</option>
+                                    <option value="50">50건씩</option>
+                                    <option value="100">100건씩</option>
+                                </select>
+                            </label>
                         </div>
-                        <div class=" text-right">
-                            <button class="btn btn-danger">선택삭제</button>
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:33.33%" />
+                                    <col style="width:33.33%" />
+                                    <col style="width:33.33%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>SSW 번호</th>
+                                        <th>SSW 이름</th>
+                                        <th>RTE Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td>3416</td>
+                                        <td>C4 SSW 1</td>
+                                        <td>10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="mt10 row">
+                        <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                                     <ul class="pagination">
@@ -177,35 +147,32 @@
 					</div>
                 </div>
                 <div class="card card-info">
-                    <div class="card-header">대리점 정보</div>
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-header">
+                        <h1 class="card-title">SSW 정보 추가 설정</h1>
+                    </div>
+                    <div id="tableInsert" class="card-body dataTables_wrapper">
+                        <div class="table-responsive">
                             <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:25%" />
+                                    <col style="width:75%" />
+                                </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th>MSO</th>
-                                        <td>T-Broad</td>
-                                        <th>대리점명</th>
-                                        <td>김준연대리점</td>
+                                        <th>C4 SSW NO</th>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
                                     </tr>
                                     <tr>
-                                        <th>담당자</th>
-                                        <td>김준*</td>
-                                        <th>연락처</th>
-                                        <td>****</td>
-                                    </tr>
-                                    <tr>
-                                        <th>최근접속일</th>
-                                        <td>2019-12-11</td>
-                                        <th></th>
-                                        <td></td>
+                                        <th>C4 SSW NAME</th>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt10 text-right">
-                            <button class="btn btn-info">목록</button>
-                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">추가</button>
+                        <button class="btn btn-default">취소</button>
                     </div>
                 </div>
                 <!-- /.content -->
@@ -264,17 +231,15 @@
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
     <script src="./resources/js/main.js"></script>
-
+    <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
-
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
         tempIcluder( '#footerInclude', './include/footer.html' );
 
-        setMenu("m1-2");
+        setMenu("m1-1");
         selectSubsInfoAjax();
-        
     </script>
 </body>
 </html>

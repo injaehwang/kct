@@ -1,4 +1,4 @@
-jQuery.fn.serializeObject = function() { 
+jQuery.fn.serializeObject = function(){
     var obj = null; 
     try { 
         if(this[0].tagName && this[0].tagName.toUpperCase() == "FORM" ) { 
@@ -13,416 +13,322 @@ jQuery.fn.serializeObject = function() {
     }finally {} 
     return obj; 
   }
+
 jQuery.ajaxSettings.traditional = true;	
-function sendFindUa_noAjax(){
-	
-	$.ajax({
-		type: "POST",
-		url: "/user/findUa_no",
-		dataType:"json",
-		data: JSON.stringify($("#findUa_no").serializeObject()),
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			location.reload();
-		},
-		error: function (error) {
-			location.reload();
-		}
-	});
-}
 
-function selectSubsInfoAjax(){
+
+//가입자관리 목록조회 ( 모든정보가 조회됨 )
+function ajaxSubsList(){
 	$.ajax({
 		type: "POST",
-		url: "/subs/sel",
-		data: JSON.stringify($("#uan_subs_info").serializeObject()),
+		url: "/biz/subList",
 		dataType:"json",
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if($("#num_cf").length>0){
-				result.odr_flag==="1"?$("input:checkbox[name='odr_flag']").prop("checked", true):$("input:checkbox[name='odr_flag']").prop("checked", false);			
-				result.tdr_type==="3"?$("input:checkbox[name='tdr_type']").prop("checked", true):$("input:checkbox[name='tdr_type']").prop("checked", false);			
-				result.cd_flag==="1"?$("input:checkbox[name='cd_flag']").prop("checked", true):$("input:checkbox[name='cd_flag']").prop("checked", false);			
-				$('input:radio[name=ocs_type]:input[value=' + result.ocs_type + ']').attr("checked", true);
-				$('input:radio[name=def_dest_type]:input[value=' + result.def_dest_type + ']').attr("checked", true);
-				$("#num_cf").val(result.num_cf);
-				$("#na_timer").val(result.na_timer);
-				
-				$('input:radio[name=crbt_flag]:input[value=' + result.crbt_flag + ']').attr("checked", true);
-				$('input:radio[name=billann_flag]:input[value=' + result.billann_flag + ']').attr("checked", true);
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+				console.log(result.body);
 			}else{
-				$('input:radio[name=ocs_type]:input[value=' + result.ocs_type + ']').attr("checked", true);
-				setBWList();
+				toastr.error(result.reason);
 			}
-
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
-
-function updateSubsInfoAjax(){
+//가입자관리 추가
+function ajaxSubsInsert(){
+	var data = [{
+			subs_key: "", //고객번호            
+			subs_id: "",	                   
+			subs_name: "", //고객이름           
+			subs_title: "", // 상호명          
+			admin_key: "", // 입력?? 이건 무엇?   
+			admin_so_code: "",              
+			reg_date: "", //생성일             
+			email: "", //이메일                
+			addr: "", //주소                  
+			pin: "",                        
+			phone: "", //연락처                
+			status: "", //고객상태 1            
+			web_index: ""                
+		},
+		{
+			subs_key: "", //고객번호            
+			subs_id: "",	                   
+			subs_name: "", //고객이름           
+			subs_title: "", // 상호명          
+			admin_key: "", // 입력?? 이건 무엇?   
+			admin_so_code: "",              
+			reg_date: "", //생성일             
+			email: "", //이메일                
+			addr: "", //주소                  
+			pin: "",                        
+			phone: "", //연락처                
+			status: "", //고객상태 1            
+			web_index: ""    
+		}
+	];
 	
 	$.ajax({
 		type: "POST",
-		url: "/subs/update",
-		data: JSON.stringify($("#uan_subs_info").serializeObject()),
+		url: "/biz/subsIn",
 		dataType:"json",
+		data: JSON.stringify(data),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result===1){
-				toastr.success('정보가 변경되었습니다.');
+			if(result.result=="OK"){
+				toastr.success(result.reason);
 			}else{
-				toastr.error('정보가 잘못되었습니다.');
+				toastr.error(result.reason);
 			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-var destList;
-function selectDestListAjax(type){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			destList = result;
-			setDestTable(type);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
-/*function selectSubsInfoAjax(){
+//가입자관리 수정
+function ajaxSubsUpdate(){
+	// 수정할 정보만 기입 ( null 값 혹은 '' 공백은 제외한다. )
+	var data = {
+			subs_key: "", //고객번호            
+			subs_id: "",	                   
+			subs_name: "", //고객이름           
+			subs_title: "", // 상호명          
+			admin_key: "", // 입력?? 이건 무엇?   
+			admin_so_code: "",              
+			reg_date: "", //생성일             
+			email: "", //이메일                
+			addr: "", //주소                  
+			pin: "",                        
+			phone: "", //연락처                
+			status: "", //고객상태 1            
+			web_index: ""                
+		};
+	
 	$.ajax({
 		type: "POST",
-		url: "/dest/ls",
+		url: "/biz/subsUp",
 		dataType:"json",
+		data: JSON.stringify(data),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			destList = result;
-			setDestTable();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-*/
-function updateDestAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/subs/destUp",
-		data: JSON.stringify($("#dest_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			if(result===1){
-				toastr.success('정보가 변경되었습니다.');
-				$.ajax({
-					type: "POST",
-					url: "/dest/ls",
-					dataType:"json",
-					contentType: "application/json; charset=UTF-8",
-					success: function(result) {destList = result;},
-					error: function (error) {toastr.error('정보가 잘못되었습니다.')}
-				});
+			if(result.result=="OK"){
+				toastr.success(result.reason);
 			}else{
-				toastr.error('정보가 잘못되었습니다.');
+				toastr.error(result.reason);
 			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
-var cfList;
-function selectCfListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			destList = result;
-			itiDetailCF();
-		},
-		error: function (error) {toastr.error('정보가 잘못되었습니다.')}
-	});
+
+//가입자관리 삭제
+function ajaxSubsDelete(){
+	var data = [{
+		subs_key: "" //고객번호            
+	},
+	{
+		subs_key: "" //고객번호            
+	}
+];
 	
 	$.ajax({
 		type: "POST",
-		url: "/dest/cflist",
+		url: "/biz/subsDl",
 		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			cfList = result;
-			setCfTable();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-function inserCfAjax() {
-	$.ajax({
-		type: "POST",
-		url: "/dest/cfup",
-		data: JSON.stringify($("#cf_setting").serializeObject()),
-		dataType:"json",
+		data: JSON.stringify(data),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
-				
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+			}else{
+				toastr.error(result.reason);
 			}
-			else toastr.error(result);
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
-function deleteCfAjax() {
-//	JSON.stringify($("#cf_setting").serializeObject())
-	var dd = getCheck();
+//서비스현황 목록조회 ( 모든정보가 조회됨 )
+function ajaxSvcList(){
+	var data = {
+		subs_key: "" //고객번호            
+	};
 	$.ajax({
 		type: "POST",
-		url: "/dest/cfdel",
-		data: {data:dd},
+		url: "/biz/snList",
 		dataType:"json",
+		data: JSON.stringify(data),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+				console.log(result.body);
+			}else{
+				toastr.error(result.reason);
 			}
-			else toastr.error(result);
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-var otcList;
-function selectOtcListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/otclist",
-		data: JSON.stringify($("#otc_info").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			otcList = result;
-			setOctTable();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-var ocgList;
-function selectOcgListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ocg",
-		data: JSON.stringify({area_code:$("#sido").val()}),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			ocgList = result;
-			setAreaZone();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-function selectDayListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/dls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			setDayDetail(result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function updateDayAjax(){
-	var totalDay="";
-	$("input[name='day_names']").each(function (i){
-		var data = $("input[name='day_names']").eq(i).val();
-		if(data!=""){
-			if(totalDay=="")totalDay+=$("input[name='day_names']").eq(i).val();
-			else totalDay+=","+$("input[name='day_names']").eq(i).val();
-		}
-	});
-	
-	$("#day_name").val(totalDay);
-	$.ajax({
-		type: "POST",
-		url: "/con/dup",
-		data: JSON.stringify($("#day_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
 
-function selectTimeListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/tls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			setTimeDetail(result);
+//서비스현황 추가
+function ajaxSvcInsert(){
+	var data = [{
+			subs_key: "",  //고객번호            
+			svc_num: "", // 070번호            
+			admin_key: "", //                
+			admin_so_code: "", //            
+			called_key: "", // 착신번호          
+			ann_id: "", // 음원ID              
+			addr: "", // 주소                  
+			use_sms: "", // 사용여부 기본 0:미사용 1:사용        
+			use_ann: "", // 사용여부 기본 0:미사용 1:사용        
+			sms_text: "", // SMS             
+			sms_origin_num: "", //sms발신번호    
+			reg_date: "", // 등록일             
+			cur_date: "", // 수정일             
+			web_index: "", //                
 		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
+		{
+			subs_key: "",  //고객번호            
+			svc_num: "", // 070번호            
+			admin_key: "", //                
+			admin_so_code: "", //            
+			called_key: "", // 착신번호          
+			ann_id: "", // 음원ID              
+			addr: "", // 주소                  
+			use_sms: "", // 사용여부 기본 0:미사용 1:사용        
+			use_ann: "", // 사용여부 기본 0:미사용 1:사용        
+			sms_text: "", // SMS             
+			sms_origin_num: "", //sms발신번호    
+			reg_date: "", // 등록일             
+			cur_date: "", // 수정일             
+			web_index: "", //   
 		}
-	});
-}
-
-function updateTimeAjax(){
-	setTimeTR();
-	$.ajax({
-		type: "POST",
-		url: "/con/tup",
-		data: JSON.stringify($("#time_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function selectNoneAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/wls",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			$("#example2").html("");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-var whiteList;
-function selectWhiteAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/wls",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			whiteList = data;
-			setBWListTable("white");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-var ocsList;
-function selectOcsAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/ols",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			ocsList = data;
-			setBWListTable("ocs");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function insertBWAjax(type){
+	];
 	
 	$.ajax({
 		type: "POST",
-		url: type=="1"? "/con/win":"/con/oin",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
+		url: "/biz/snIn",
 		dataType:"json",
+		data: JSON.stringify(data),
 		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
+		success: function(result) {
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+			}else{
+				toastr.error(result.reason);
+			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-			if(type=="1")selectWhiteAjax();
-			else selectOcsAjax();
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
-function deleteCfAjax() {
-//	JSON.stringify($("#cf_setting").serializeObject())
-	var dd = getCheck();
+
+//서비스현황 수정
+function ajaxSvcUpdate(){
+	// 수정할 정보만 기입 ( null 값 혹은 '' 공백은 제외한다. )
+	var data = {
+			subs_key: "",  //고객번호            
+			svc_num: "", // 070번호            
+			admin_key: "", //                
+			admin_so_code: "", //            
+			called_key: "", // 착신번호          
+			ann_id: "", // 음원ID              
+			addr: "", // 주소                  
+			use_sms: "", // 사용여부 기본 0:미사용 1:사용        
+			use_ann: "", // 사용여부 기본 0:미사용 1:사용        
+			sms_text: "", // SMS             
+			sms_origin_num: "", //sms발신번호    
+			reg_date: "", // 등록일             
+			cur_date: "", // 수정일             
+			web_index: "", //                
+		};
+	
 	$.ajax({
 		type: "POST",
-		url: "/dest/cfdel",
-		data: {data:dd},
+		url: "/biz/snUp",
+		dataType:"json",
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=UTF-8",
+		success: function(result) {
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+			}else{
+				toastr.error(result.reason);
+			}
+		},
+		error: function (error) {
+			toastr.error("서버와 연결이 원활하지 않습니다.");
+		}
+	});
+}
+
+//서비스현황 삭제
+function ajaxSvcDelete(){
+	var data = [{
+		subs_key: "", //고객번호          
+		svc_num: "", // 070번호            
+	},
+	{
+		subs_key: "", //고객번호          
+		svc_num: "", // 070번호                      
+	}
+];
+	
+	$.ajax({
+		type: "POST",
+		url: "/biz/snDl",
+		dataType:"json",
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=UTF-8",
+		success: function(result) {
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+			}else{
+				toastr.error(result.reason);
+			}
+		},
+		error: function (error) {
+			toastr.error("서버와 연결이 원활하지 않습니다.");
+		}
+	});
+}
+
+
+//작업이력조회 ( 모든정보가 조회됨 )
+function ajaxHisList(){
+	$.ajax({
+		type: "POST",
+		url: "/biz/hisList",
 		dataType:"json",
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
+			if(result.result=="OK"){
+				toastr.success(result.reason);
+				console.log(result.body);
+			}else{
+				toastr.error(result.reason);
 			}
-			else toastr.error(result);
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
-
-
 

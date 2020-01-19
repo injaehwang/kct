@@ -58,12 +58,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>루트 추가 설정</h1>
+                            <h1>서비스 번호 추가</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">루트 관리</a></li>
-                                <li class="breadcrumb-item active">루트 추가 설정</li>
+                                <li class="breadcrumb-item"><a href="/subs">서비스 번호 추가</a></li>
+                                <li class="breadcrumb-item active">서비스 번호 추가</li>
                             </ol>
                         </div>
                     </div>
@@ -74,42 +74,87 @@
             <section class="content">
                 <div class="card card-info">
                     <div  id="" class="card-body dataTables_wrapper">
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
-                                    <tbody>
-                                        <tr>
-                                            <th>RTE ID</th>
-                                            <td>
-                                                <div class="input-group input-group-sm">
-                                                    <input type="text" class="form-control">
-                                                    <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary">중복체크</button>
-                                                    </span>
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:25%" />
+                                    <col style="width:75%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>서비스번호</th>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-append">
+                                                    <button type="button" class="btn btn-primary">중복체크</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>RTE ID</th>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <select class="form-control form-control-sm">
+                                                            <option>선택</option>
+                                                            <option>1000</option>
+                                                            <option>1001</option>
+                                                            <option>1750</option>
+                                                            <option>2000</option>
+                                                        </select>
+                                                    </div> 
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control form-control-sm">
+                                                    </div> 
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control form-control-sm">
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>RTE NAME</th>
-                                            <td>
-                                                <input type="text" class="form-control form-control-sm">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>서비스 여부</th>
-                                            <td class="inline-radio-wrap">
-                                                <label for="">
-                                                    <input type="radio">ON
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>착신 번호</th>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="row">
+                                                            <label for="" class="col-sm-2 col-form-label text-sm-right">1차</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control form-control-sm" id="" value="">
+                                                            </div>  
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-sm-4">
+                                                        <div class="row">
+                                                            <label for="" class="col-sm-2 col-form-label text-sm-right">2차</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control form-control-sm" id="" value="">
+                                                            </div>  
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-sm-4">
+                                                        <div class="row">
+                                                            <label for="" class="col-sm-2 col-form-label text-sm-right">3차</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control form-control-sm" id="" value="">
+                                                            </div>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="card-footer bg-white text-right">
-                        <button class="btn btn-primary">추가</button>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">저장하기</button>
                         <button class="btn btn-default">취소</button>
                     </div>
                 </div>

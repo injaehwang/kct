@@ -47,6 +47,110 @@
   <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="./resources/dist/css/custom.css">
 
+  <style>
+  /*switch component*/
+.el-switch,
+.el-switch-style,
+.el-switch-style:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.el-switch {
+  display: inline-block;
+  font-size: 100%;
+  height: 1.6em;
+  position: relative;
+}
+.el-switch .el-switch-style {
+  height: 1.6em;
+  left: 0;
+  background: #C0CCDA;
+  -webkit-border-radius: 0.8em;
+  border-radius: 0.8em;
+  display: inline-block;
+  position: relative;
+  top: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 3em;
+  cursor: pointer;
+}
+.el-switch .el-switch-style:before {
+  display: block;
+  content: '';
+  height: 1.4em;
+  position: absolute;
+  width: 1.4em;
+  background-color: #fff;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  left: 0.1em;
+  top: 0.1em;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.el-switch > input[type="checkbox"] {
+  display: none;
+}
+.el-switch > input[type="checkbox"][disabled] + .el-switch-style {
+  cursor: not-allowed;
+  background-color: #D3DCE6;
+}
+.el-switch > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: #20a0ff;
+}
+.el-switch > input[type="checkbox"]:checked + .el-switch-style:before {
+  left: 50%;
+}
+/* .el-switch > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: #b0d7f5; */
+}
+.el-switch.el-switch-blue > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: #20a0ff;
+}
+.el-switch.el-switch-blue > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: #b0d7f5;
+}
+.el-switch.el-switch-green > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: #13ce66;
+}
+.el-switch.el-switch-green > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: #a1efc4;
+}
+.el-switch.el-switch-red > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: #ff4949;
+}
+.el-switch.el-switch-red > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: #f9b3b3;
+}
+.el-switch.el-switch-yellow > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: #f7ba2a;
+}
+.el-switch.el-switch-yellow > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: #fbeac1;
+}
+/*define size*/
+.el-radio.el-radio-sm,
+.el-checkbox.el-checkbox-sm,
+.el-switch.el-switch-sm {
+  font-size: 85%;
+}
+.el-radio.el-radio-lg,
+.el-checkbox.el-checkbox-lg,
+.el-switch.el-switch-lg {
+  font-size: 125%;
+}
+
+.ann_types {overflow: hidden;}
+.ann_types > * {float: left;}
+.ann_types label, .ann_types p {margin-bottom: 0;}
+.ann_types button {margin-right: 10px;}
+.ann_types p {margin-left: 10px;}
+.ann_types span.el-switch-style {top: 6px;}
+
+</style>
+
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
@@ -80,7 +184,7 @@
                     <div class="card-header"><h1 class="card-title">안심번호 서비스</h1></div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="statusInfoBox">
                                 <colgroup>
                                     <col style="width:25%;" />
                                     <col style="width:75%;" />
@@ -88,31 +192,47 @@
                                 <tbody>
                                     <tr>
                                         <th>대표안심번호</th>
-                                        <td>05080590000 (일반형)</td>
+                                        <td data-name="pn_rep"></td>
                                     </tr>
                                     <tr>
                                         <th>번호 대역</th>
-                                        <td>05080590000 ~ 05080599999 (10000)건</td>
+                                        <td data-name="rep_range"></td>
                                     </tr>
                                     <tr>
                                         <th>가입일</th>
-                                        <td>2019/12/10</td>
+                                        <td data-name="reg_date"></td>
                                     </tr>                                       
                                     <tr>
                                         <th>이용번호 수</th>
-                                        <td>4739건 (48%)</td>
+                                        <td data-name="used_cnt"></td>
                                     </tr>
                                     <tr>
                                         <th>가용번호 수</th>
-                                        <td>5261건</td>
+                                        <td data-name="use_cnt"></td>
                                     </tr>
                                     <tr>
                                         <th>양방향 안내방송</th>
-                                        <td>사용</td>
+                                        <td data-name="pn_type"></td>
                                     </tr>
                                     <tr>
                                         <th></th>
-                                        <td><button class="btn btn-sm btn-info">미리듣기</button> <button class="btn btn-sm btn-primary">발신</button></td>
+                                        <td class="ann_types"><button class="btn btn-sm btn-info">미리듣기</button> 
+                                            <p>
+                                                <label class="el-switch">
+                                                    <span class="label">발신</span> : 
+                                                    <input type="checkbox" data-name="ann_type1" disabled="disabled">
+                                                    <span class="el-switch-style"></span>
+                                                </label>                                                    
+                                            </p>
+                                            <p>
+                                                <label class="el-switch">
+                                                    <span class="label">착신</span> : 
+                                                    <input type="checkbox" data-name="ann_type2" disabled="disabled">
+                                                    <span class="el-switch-style"></span>
+                                                </label>                                                    
+                                            </p>
+                                            <!-- <button class="btn btn-sm btn-primary">발신</button> -->
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -178,6 +298,7 @@
     <!--//END include file="../temp/javascriptLink.jsp -->
 
     <script src="./resources/js/main.js"></script>
+    <script src="./resources/js/pn_status.js"></script>
 
     <script>
 

@@ -58,12 +58,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>가입자관리</h1>
+                            <h1>서비스 번호 대역 착신 설정</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">가입자관리</a></li>
-                                <li class="breadcrumb-item active">가입자관리</li>
+                                <li class="breadcrumb-item"><a href="/subs">가입자 대역 관리</a></li>
+                                <li class="breadcrumb-item active">서비스 번호 대역 착신 설정</li>
                             </ol>
                         </div>
                     </div>
@@ -73,143 +73,22 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card card-info">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="row">
-                                    <label class="col-3 mt5">조회</label>
-                                    <div class="col-4">
-                                        <select class="form-control form-control-sm">
-                                            <option>선택</option>
-                                            <option>고객명</option>
-                                            <option>서비스 번호</option>
-                                            <option>서비스 번호 대역</option>
-                                            <option>루트 번호</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control form-control-sm">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white text-center">
-                        <button type="button" class="btn btn-primary btn-lg">검색하기</button>
-                        <a href="root_plus_setting.html" class="btn btn-info btn-lg">추가하기</a>
-                    </div>
-                </div>
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">총 <span>6</span> 개</h1>
-                    </div>
-                    
-                    <div  id="tableInsert" class="card-body dataTables_wrapper">
-                        <div class="top_search_row">
-                            <label>
-                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
-                                    <option value="10">10건씩</option>
-                                    <option value="25">25건씩</option>
-                                    <option value="50">50건씩</option>
-                                    <option value="100">100건씩</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="table-responsive">
-                            <table id="" class="table table-bordered table-hover" role="grid" >
-                                <colgroup>
-                                    <col style="width:10%;" />
-                                    <col style="width:10%;" />
-                                    <col style="width:20%;" />
-                                    <col style="width:10%;" />
-                                    <col style="width:10%;" />
-                                    <col style="width:10%;" />
-                                    <col style="width:20%;" />
-                                    <col style="width:10%;" />
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox"></th>
-                                        <th>RTE_NO</th>
-                                        <th>서비스 번호</th>
-                                        <th>1차 착신</th>
-                                        <th>2차 착신</th>
-                                        <th>3차 착신</th>
-                                        <th>무응답 timer</th>
-                                        <th>등록일</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr role="row" class="odd">
-                                        <td><input type="checkbox"></td>
-                                        <td>1111</td>
-                                        <td><a href="">070-0000-0000</a></td>
-                                        <td>010-1111-1111</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>2019-08-07</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12">
-                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                        <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                        <li class="paginate_button page-item next disabled" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-                </div>
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h1 class="card-title">서비스 번호 추가</h1>
-                    </div>
                     <div  id="" class="card-body dataTables_wrapper">
                         <div class="table-responsive">
                             <table id="" class="table table-bordered table-hover" role="grid" >
-                                <colgroup>
-                                    <col style="width:25%" />
-                                    <col style="width:75%" />
-                                </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th>서비스번호</th>
-                                        <td>
-                                            <div class="col-sm-12">
-                                                <div class="input-group input-group-sm">
-                                                    <input type="text" class="form-control">
-                                                    <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary">중복체크</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>RTE ID</th>
+                                        <th>서비스 번호 대역</th>
                                         <td>
                                             <div class="col-sm-12">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <select class="form-control form-control-sm">
-                                                            <option>선택</option>
-                                                            <option>1000</option>
-                                                            <option>1001</option>
-                                                            <option>1750</option>
-                                                            <option>2000</option>
-                                                        </select>
-                                                    </div> 
-                                                    <div class="col-sm-4 mt5-sm-under">
-                                                        <input type="text" class="form-control form-control-sm">
-                                                    </div> 
-                                                    <div class="col-sm-4 mt5-sm-under">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control">
+                                                            <span class="input-group-append">
+                                                                <button type="button" class="btn btn-primary">조회</button>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -252,10 +131,74 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
+                    <div class="card-footer bg-white text-right">
                         <button class="btn btn-primary">저장하기</button>
                         <button class="btn btn-default">취소</button>
                     </div>
+                </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h1 class="card-title">총 <span>6</span> 개</h1>
+                    </div>
+                    
+                    <div  id="tableInsert" class="card-body dataTables_wrapper">
+                        <div class="top_search_row">
+                            <label>
+                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                                    <option value="10">10건씩</option>
+                                    <option value="25">25건씩</option>
+                                    <option value="50">50건씩</option>
+                                    <option value="100">100건씩</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:10%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:10%;" />
+                                    <col style="width:10%;" />
+                                    <col style="width:10%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:20%;" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>RTE_NO</th>
+                                        <th>서비스 번호</th>
+                                        <th>1차 착신</th>
+                                        <th>2차 착신</th>
+                                        <th>3차 착신</th>
+                                        <th>무응답 timer</th>
+                                        <th>등록일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td>1111</td>
+                                        <td><a href="">070-0000-0000</a></td>
+                                        <td>010-1111-1111</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>2019-08-07</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                        <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                        <li class="paginate_button page-item next disabled" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+					</div>
                 </div>
                 <!-- /.content -->
             </section>

@@ -46,6 +46,31 @@
   <!-- Toastr -->
   <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="./resources/dist/css/custom.css">
+
+  <style>
+      #cldListBox {}
+      #cldListBox .noData {text-align: center; height: 60px; line-height: 60px; font-size: 16px; font-weight: bold;}
+      table .center {text-align: center;}
+      table button {width: 40px; height: 26px; line-height: 26px; border-radius: 4px; padding: 0; border: 0; background: #747577; color: #fff;}
+      
+      #cldListBox tr p.label {margin: 0;}
+      #cldListBox tr td input {display: none;}
+      #cldListBox tr button.btn-save {display: none; background: #0069d9;}
+      #cldListBox tr.edit {background: #f3f9ff;}
+      #cldListBox tr.edit td p.label {display: none;}
+      #cldListBox tr.edit td input {display: block;}
+      #cldListBox tr.edit button.btn-edit {display: none;}
+      #cldListBox tr.edit button.btn-save {display: inline-block;}
+
+      #cldListBox tr td input[type=checkbox] {display: inline !important;}
+
+      #btn-box {}
+      #btn-box .btn-multiEdit {background: #747577; border: 1px solid #747474;}
+      #btn-box .btn-multiEditSave {background: #0069d9; display: none;}
+      #btn-box.edit .btn-multiEdit {display: none;}
+      #btn-box.edit .btn-multiEditSave {display: inline-block;}
+      
+  </style>
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
@@ -74,7 +99,7 @@
                 <!-- /.container-fluid -->
             </section>
             <!-- Main content -->
-            <section class="content">
+            <section class="content" id="serviceSearchBox">
                 <div class="card card-info">
                     <div class="card-header"><h1 class="card-title">번호조회</h1></div>
                     <div class="card-body">
@@ -85,13 +110,13 @@
                             <div class="col-md-10">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <select class="form-control form-control-sm">
-                                            <option>안심번호</option>
-                                            <option>착신번호</option>
+                                        <select class="form-control form-control-sm" data-name="pn_numberType">
+                                            <option value="1">안심번호</option>
+                                            <option value="2">착신번호</option>
                                         </select>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" data-name="pn">
                                     </div>
                                 </div>
                             </div>
@@ -102,19 +127,29 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control form-control-sm" placeholder="시작">
+                                    <span class="mt5">시작</span>
+                                    <div class="col-md-3">
+                                        <input type="number" class="form-control form-control-sm" data-name="pn_start">
                                     </div>
-                                    <span class="mt5 col-md-2 text-center">~</span>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control form-control-sm" placeholder="끝">
+                                    <span class="mt5">~</span>
+                                    <span class="mt5">끝</span>
+                                    <div class="col-md-3">
+                                        <input type="number" class="form-control form-control-sm" data-name="pn_end">
                                     </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control form-control-sm" data-name="pn_range">
+                                            <option value="10">10</option>
+                                            <option value="100">100</option>
+                                            <option value="1000">1000</option>
+                                        </select>
+                                    </div>
+                                    <span class="mt5">이내</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#input_error_modal">검색하기</button>
+                        <button id="retrieveService" type="button" class="btn btn-primary btn-lg" data-toggle="modal">검색하기</button>
                     </div>
                 </div>
                 <div class="card card-info dataTables_wrapper">
@@ -126,14 +161,14 @@
                     <div class="card-body" id="tableInsert">
                         <div class="top_search_row">
                             <label>
-                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                                <select name="example1_length" aria-controls="example1" class="form-control form-control-sm" data-name="rowCnt">
                                     <option value="10">10건씩</option>
                                     <option value="25">25건씩</option>
                                     <option value="50">50건씩</option>
                                     <option value="100">100건씩</option>
                                 </select>
                             </label>
-                            <label>
+                            <!-- <label>
                                 <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
                                     <option value="">번호</option>
                                     <option value=""></option>
@@ -141,37 +176,40 @@
                                     <option value=""></option>
                                 </select>
                             </label>
-                            <label><input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label>
-                            <button class="btn btn-primary form-control-sm">검색</button>
+                            <label><input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label> -->
+                            <!-- <button class="btn btn-primary form-control-sm">검색</button> -->
                         </div>
                         
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example2" class="table table-bordered table-hover no-footer" role="grid" aria-describedby="example2_info">
+                                    <colgroup>
+                                        <col style="width: 5%;" />
+                                        <col style="width: 5%;" />
+                                        <col style="width: 17%;" />
+                                        <col style="width: 21%;" />
+                                        <col style="width: 21%;" />
+                                        <col style="width: 21%;" />
+                                        <col style="width: 10%;" />
+                                    </colgroup>
                                     <thead>
                                         <tr role="row">
-                                            <th>
-                                                <input type="checkbox">
+                                            <th class="center">
+                                                <input type="checkbox" class="checkAll">
                                             </th>
-                                            <th>번호</th>
+                                            <th class="center">번호</th>
                                             <th>안심번호</th>
                                             <th>1차 착신번호</th>
                                             <th>2차 착신번호</th>
                                             <th>3차 착신번호</th>
-                                            <th>착신설정변경</th>                                            
+                                            <th class="center">착신설정변경</th>                                            
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="cldListBox">
                                         <tr role="row" class="odd">
-                                            <td>
-                                                <input type="checkbox">
+                                            <td colspan="7" class="noData">
+                                                no data
                                             </td>
-                                            <td>1</td>
-                                            <td>05050590001</td>
-                                            <td>01011111111</td>
-                                            <td>01011111111</td>
-                                            <td></td>
-                                            <td><button class="btn btn-info btn-sm" data-toggle="modal" data-target="#call_setting_modal">착신설정</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -181,7 +219,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <div class="dataTables_paginate paging_simple_numbers" id="">
-                                    <ul class="pagination">
+                                    <ul class="pagination" id="pagination">
                                         <li class="paginate_button page-item previous disabled" id="example2_previous">
                                             <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
                                         </li>
@@ -196,10 +234,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-default">엑셀 다운로드</button>
-                        <button class="btn btn-danger">착신번호 삭제</button>
-                        <button class="btn btn-primary">착신번호 설정</button>
+                    <div class="card-footer text-right" id="btn-box">
+                        <button class="btn btn-default btn-exelDown">엑셀 다운로드</button>
+                        <button class="btn btn-danger btn-delete">착신번호 삭제</button>
+                        <button class="btn btn-primary btn-multiEdit">착신번호 설정</button>
+                        <button class="btn btn-primary btn-multiEditSave">착신번호 저장</button>
                     </div>
                 </div>
                 <!-- /.content -->
@@ -366,6 +405,7 @@
     <!--//END include file="../temp/javascriptLink.jsp -->
 
     <script src="./resources/js/main.js"></script>
+    <script src="./resources/js/pn_service.js"></script>
 
     <script>
 
@@ -375,7 +415,8 @@
         tempIcluder( '#footerInclude', './include/footer.html' );
 
         setMenu("m1-2");
-        selectSubsInfoAjax();
+        
+        // selectSubsInfoAjax();
         
     </script>
 </body>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- include file="../temp/link.jsp -->
-<title>한국케이블텔레콤</title>
+<title>BIZ114</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -37,45 +37,38 @@
 <link rel="stylesheet"
 	href="./resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="./resources/dist/css/custom.css">
-  <style>
-      textarea.form-control:disabled {background-color: #fff;}
-      #useTxtBox {}
-      #useTxtBox .switch {display: inline-block;}
-      #useTxtBox.use .switch {display: none;}
-      #useTxtBox .switch.useCase {display: none;}
-      #useTxtBox.use .switch.useCase {display: inline-block;}
-      
-  </style>
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="./resources/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="./resources/plugins/toastr/toastr.min.css">
+<!-- 추가 -->
+<link rel="stylesheet" href="./resources/plugins/jquery-ui/jquery-ui.css">
+<link rel="stylesheet" href="./resources/dist/css/custom.css">
 <!--//END include file="../temp/link.jsp -->
 <body class="sidebar-mini layout-boxed text-sm">
 	<div class="wrapper">
+
         <!-- include file="../temp/nav.jsp -->
         <div id="navInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
 
         <!-- include file="../temp/aside.jsp -->
         <div id="asideInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
-                
+        
         <!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>문자설정</h1><small>안심번호 서비스의 문자 내용을 설정하실 수 있습니다</small>
+                            <h1>안내방송 설정</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/subs">서비스관리</a></li>
-                                <li class="breadcrumb-item active">문자설정</li>
+                                <li class="breadcrumb-item"><a href="/subs">안내방송 관리</a></li>
+                                <li class="breadcrumb-item active">안내방송 설정</li>
                             </ol>
                         </div>
                     </div>
@@ -84,53 +77,65 @@
             </section>
             <!-- Main content -->
             <section class="content">
-                <div class="card card-info">
-                    <div class="card-header"><h1 class="card-title">문자서비스</h1></div>
-                    <div class="card-body" id="useTxtBox"><!-- use -->
-                        <button class="switch btn btn-primary">서비스 이용</button>
-                        <button class="switch btn btn-danger useCase">서비스 해제</button>
-                        <label>현재 고객님은 문자서비스 
-                            <span class="switch badge badge-primary text-sm useCase">사용중</span>
-                            <span class="switch badge btn-danger text-sm">미사용중</span>
-                            입니다.
-                        </label>
-                    </div>
+                <div class="">
+                    <a class="btn btn-lg btn-default" href="guide_setting_tab01.html">기존음원</a>
+                    <a class="btn btn-lg btn-primary active" href="guide_setting_tab02.html">직접입력</a>
                 </div>
-                <div class="card card-info">
-                    <div class="card-header"><h1 class="card-title">설정문자</h1></div>
-                    <div class="card-body">
-                        <textarea class="form-control textarea100" id="settedTextArea" disabled="disabled"></textarea>
-                    </div>
-                </div>
-                <div class="card card-info">
-                    <div class="card-header"><h1 class="card-title">문자작성</h1></div>
-                    <div class="card-body">
-                        <div class="phone_message_wrap">
-                            <div class="power"></div>
-                            <p class="company">Phone</p>
-                            <div id="screen">
-                                <!-- NAVBAR --------------------->
-                                <div id="navbar">
-                                <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519973-036_Battery-128.png" class="battery">
-                                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/589920-200.png" class="battery">
-                                </div>
-                                <!-- MESSAGING SCREEN ----------->
-                                <div id="messagingScreen">
-                                <div class="phone-message">
-                                    <textarea id="phoneTextArea" maxlength=""></textarea>
-                                    <p class="byte-wrap mt5 text-right">(<span class="byte-current">0</span>&#47;<span class="byte-max">80</span>)byte</p>
-                                </div>
-                                <div class="item_button_group">
-                                    <button class="item_button btn btn-danger cancel">다시쓰기</button>
-                                    <button class="item_button btn btn-primary submit">문자 등록하기</button>
-                                </div>
-                                
-                                </div>
-                            </div>
-                            <div id="home"></div>
+                <div class="card card-info mt10">
+                    <div class="card-header">
+                        <h1 class="card-title">음원을 선택해주세요</h1>
+                        <div class="text-right">
+                            <i class="fas fa-play-circle"></i>
+                            <i class="fas fa-pause ml5"></i>
+                            <i class="fas fa-stop ml5"></i>
+                            <i class="fas fa-arrow-alt-circle-down ml5"></i>
                         </div>
                     </div>
-                </div>
+                    <div  id="" class="card-body dataTables_wrapper">
+                        <div class="row ">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered" role="grid" >
+                                    <colgroup>
+                                        <col style="width:25%;" />
+                                        <col style="width:75%;" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>음원명</th>
+                                            <td>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-append">
+                                                        <button type="button" class="btn btn-primary">중복확인</button>
+                                                    </span>
+                                                </div>
+                                                <p class="form_desc">중복확인을 수행해주세요.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>안내방송 문구</th>
+                                            <td>
+                                                <textarea class="form-control textarea100"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>미리듣기</th>
+                                            <td>
+                                                <button class="btn btn-sm btn-default"><i class="fas fa-play-circle"></i></button>
+                                                <button class="btn btn-sm btn-default"><i class="fas fa-pause"></i></button>
+                                                <button class="btn btn-sm btn-default"><i class="fas fa-stop"></i></button>
+                                                <button class="btn btn-sm btn-default"><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">설정</button>
+                        <button class="btn btn-danger">삭제</button>
+                    </div>                        
                 </div>
                 <!-- /.content -->
             </section>
@@ -138,32 +143,16 @@
         </div>
         <!--/. content-wrapper -->
         <!-- include file="../temp/footer.jsp -->
-        <div id="footerInclude"></div> <!-- jsp 로 바꾸실때는 이 줄을 삭제하시고 위 내용으로 대체 -->
-
+        <footer class="main-footer">
+            (주)한국케이콤텔레콤 대표이사 신동선 04526 서울특별시 중구세종대로 50 흥국생명 7층
+            </br>
+            <strong>Copyright &copy; 2014-2019 KCT</strong>
+            All rights reserved.
+            
+        </footer>
+        <!--//END include file="../temp/footer.jsp -->
     </div>
     <!--/. wrapper -->
-    <!-- byte_over_modal -->
-    <div class="modal fade" id="byte_over_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">문자 입력 크기 제한</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p class="alert-text">원인 : 80byte 이상은 저장이 되지 않습니다.</p>
-                </div>
-            
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--//# byte_over_modal -->
     <!-- include file="../temp/javascriptLink.jsp -->
     <!-- jQuery -->
     <script src="./resources/plugins/jquery/jquery.min.js"></script>
@@ -209,27 +198,19 @@
     <script src="./resources/js/c_event.js"></script>
     <script src="./resources/js/c_ajax.js"></script>
     <script src="./resources/js/config.js"></script>
-
-    <script src="./resources/js/pn_letter.js"></script>
-    <!--//END include file="../temp/javascriptLink.jsp -->
-
     <script src="./resources/js/main.js"></script>
-
+    <!--//END include file="../temp/javascriptLink.jsp -->
     <script>
 
         // jsp include 기능을 임시로 구현
         tempIcluder( '#navInclude', './include/nav.html' );
         tempIcluder( '#asideInclude', './include/aside.html' );
         tempIcluder( '#footerInclude', './include/footer.html' );
-
-        setMenu("m1-2");
-        // selectSubsInfoAjax();
-
-        retrieveSMSInfo();
         
-        
+        setMenu("m1-1");
+        selectSubsInfoAjax();
 
-
+       
     </script>
 </body>
 </html>

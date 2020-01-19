@@ -1,4 +1,4 @@
-jQuery.fn.serializeObject = function() { 
+jQuery.fn.serializeObject = function(){
     var obj = null; 
     try { 
         if(this[0].tagName && this[0].tagName.toUpperCase() == "FORM" ) { 
@@ -13,14 +13,15 @@ jQuery.fn.serializeObject = function() {
     }finally {} 
     return obj; 
   }
+
 jQuery.ajaxSettings.traditional = true;	
+
 function sendFindUa_noAjax(){
-	
 	$.ajax({
 		type: "POST",
-		url: "/user/findUa_no",
+		url: "/pn/user/findUa_no",
 		dataType:"json",
-		data: JSON.stringify($("#findUa_no").serializeObject()),
+		data: JSON.stringify({pn_rep:$("#fua_no").val()}),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
 			location.reload();
@@ -31,398 +32,251 @@ function sendFindUa_noAjax(){
 	});
 }
 
-function selectSubsInfoAjax(){
+//서비스 현황 조회
+function ajaxStatusInfo(){
 	$.ajax({
 		type: "POST",
-		url: "/subs/sel",
-		data: JSON.stringify($("#uan_subs_info").serializeObject()),
+		url: "/pn/sel",
 		dataType:"json",
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if($("#num_cf").length>0){
-				result.odr_flag==="1"?$("input:checkbox[name='odr_flag']").prop("checked", true):$("input:checkbox[name='odr_flag']").prop("checked", false);			
-				result.tdr_type==="3"?$("input:checkbox[name='tdr_type']").prop("checked", true):$("input:checkbox[name='tdr_type']").prop("checked", false);			
-				result.cd_flag==="1"?$("input:checkbox[name='cd_flag']").prop("checked", true):$("input:checkbox[name='cd_flag']").prop("checked", false);			
-				$('input:radio[name=ocs_type]:input[value=' + result.ocs_type + ']').attr("checked", true);
-				$('input:radio[name=def_dest_type]:input[value=' + result.def_dest_type + ']').attr("checked", true);
-				$("#num_cf").val(result.num_cf);
-				$("#na_timer").val(result.na_timer);
-				
-				$('input:radio[name=crbt_flag]:input[value=' + result.crbt_flag + ']').attr("checked", true);
-				$('input:radio[name=billann_flag]:input[value=' + result.billann_flag + ']').attr("checked", true);
+			if(result.result=="OK"){
+				toastr.success(result.reason);
 			}else{
-				$('input:radio[name=ocs_type]:input[value=' + result.ocs_type + ']').attr("checked", true);
-				setBWList();
+				toastr.error(result.reason);
 			}
-
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			toastr.error("서버와 연결이 원활하지 않습니다.");
 		}
 	});
 }
 
+//서비스 관리 조회
+function ajaxManagementList(){
+	// 대역 조회시
+/*	var dats ={
+			rep_type	 : "0",  //0 : 대역조회시 | 1 : 안심번호 | 2 : 착신번호
+			pn 			 : "",  //안심 or 착신번호시 번호값
+			pn_start 	 : "0508080000",  // 대역조회시 시작값
+			pn_end 		 : "0508080005",  // 대역조회시 끝값
+			rowcnt 	 	 : "10",  // 최대 row 수
+			page 		 : "1",  // 현 page
+	}*/
 
-function updateSubsInfoAjax(){
-	
+	// 안심 or 착신번호로 조회시
+	var dats ={
+			rep_type	 : "2",  //0 : 대역조회시 | 1 : 안심번호 | 2 : 착신번호
+			pn 			 : "0508080000",  //안심 or 착신번호시 번호값
+			pn_start 	 : "",  // 대역조회시 시작값
+			pn_end 		 : "",  // 대역조회시 끝값
+			rowcnt 	 	 : "10",  // 최대 row 수
+			page 		 : "1",  // 현 page
+	}
 	$.ajax({
 		type: "POST",
-		url: "/subs/update",
-		data: JSON.stringify($("#uan_subs_info").serializeObject()),
+		url: "/pn/mglist",
 		dataType:"json",
+		data: JSON.stringify(dats),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result===1){
-				toastr.success('정보가 변경되었습니다.');
+			if(result.result=="OK"){
+				alert(result.reason);
+				console.log(result.body.cldList);
 			}else{
-				toastr.error('정보가 잘못되었습니다.');
+				alert(result.reason);
 			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-var destList;
-function selectDestListAjax(type){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			destList = result;
-			setDestTable(type);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			
 		}
 	});
 }
 
-/*function selectSubsInfoAjax(){
+//서비스 관리 업데이트
+function ajaxManagementUpdate(){
+	var cldList = [{
+			pn : "0508080000",		//안심번호
+			called1 : "123123",	//1차 착신번호
+			called2 : "2342",	//2차 착신번호
+			called3 : "6232"	//3차 착신번호
+	},
+	{
+		pn : "0508080001",		//안심번호
+		called1 : "11",	//1차 착신번호
+		called2 : "22",	//2차 착신번호
+		called3 : "33"	//3차 착신번호
+	}
+	];
+	
+	var dats ={
+			rep_type	 : "",  //0 : 대역조회시 | 1 : 안심번호 | 2 : 착신번호
+			pn 			 : "",  //안심 or 착신번호시 번호값
+			pn_start 	 : "",  // 대역조회시 시작값
+			pn_end 		 : "",  // 대역조회시 끝값
+			rowcnt 	 	 : "",  // 최대 row 수
+			page 		 : "",  // 현 page
+			cldList 	 : cldList // 수정할 대상
+	}
 	$.ajax({
 		type: "POST",
-		url: "/dest/ls",
+		url: "/pn/mgup",
 		dataType:"json",
+		data: JSON.stringify(dats),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			destList = result;
-			setDestTable();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-*/
-function updateDestAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/subs/destUp",
-		data: JSON.stringify($("#dest_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			if(result===1){
-				toastr.success('정보가 변경되었습니다.');
-				$.ajax({
-					type: "POST",
-					url: "/dest/ls",
-					dataType:"json",
-					contentType: "application/json; charset=UTF-8",
-					success: function(result) {destList = result;},
-					error: function (error) {toastr.error('정보가 잘못되었습니다.')}
-				});
+			if(result.result=="OK"){
+				alert(result.reason);
 			}else{
-				toastr.error('정보가 잘못되었습니다.');
+				alert(result.reason);
 			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			
 		}
 	});
 }
-var cfList;
-function selectCfListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			destList = result;
-			itiDetailCF();
-		},
-		error: function (error) {toastr.error('정보가 잘못되었습니다.')}
-	});
+
+
+//서비스 관리 삭제
+function ajaxManagementDelete(){
+	var cldList = [{
+			pn : "0508080000",		//안심번호
+	}]
 	
+	var dats ={
+			rep_type	 : "",  //0 : 대역조회시 | 1 : 안심번호 | 2 : 착신번호
+			pn 			 : "",  //안심 or 착신번호시 번호값
+			pn_start 	 : "",  // 대역조회시 시작값
+			pn_end 		 : "",  // 대역조회시 끝값
+			rowcnt 	 	 : "",  // 최대 row 수
+			page 		 : "",  // 현 page
+			cldList 	 : cldList // 삭제할 대상
+	}
 	$.ajax({
 		type: "POST",
-		url: "/dest/cflist",
+		url: "/pn/mgdel",
 		dataType:"json",
+		data: JSON.stringify(dats),
 		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			cfList = result;
-			setCfTable();
+		success: function(result) {
+			if(result.result=="OK"){
+				alert(result.reason);
+			}else{
+				alert(result.reason);
+			}
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			
 		}
 	});
 }
 
-function inserCfAjax() {
+
+//문자서비스 요청
+function ajaxSMSInfo(){
 	$.ajax({
 		type: "POST",
-		url: "/dest/cfup",
-		data: JSON.stringify($("#cf_setting").serializeObject()),
+		url: "/pn/sel",
 		dataType:"json",
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
-				
+			if(result.result=="OK"){
+				alert(result.reason);
+				console.log(result.body.SMS_TYPE); // SMS 설정 0 : 미사용, 1 : 사용
+				console.log(result.body.SMS_TEXT); // 설정문자
+				setSMSInfo(result.body);
+			}else{
+				alert(result.reason);
 			}
-			else toastr.error(result);
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			
 		}
 	});
+
+	setSMSInfo(result.body);
 }
 
-function deleteCfAjax() {
-//	JSON.stringify($("#cf_setting").serializeObject())
-	var dd = getCheck();
-	$.ajax({
-		type: "POST",
-		url: "/dest/cfdel",
-		data: {data:dd},
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
-			}
-			else toastr.error(result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
+//문자서비스 업데이트
+function ajaxSMSUpdate(){
+	// 문자 사용 or 미사용 설정시 해당값만 셋팅
+	var dats ={
+			sms_type	 : ""  //	0 : 미사용, 1 : 사용
+	}
 
-var otcList;
-function selectOtcListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/otclist",
-		data: JSON.stringify($("#otc_info").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			otcList = result;
-			setOctTable();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-var ocgList;
-function selectOcgListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/dest/ocg",
-		data: JSON.stringify({area_code:$("#sido").val()}),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			ocgList = result;
-			setAreaZone();
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
-		}
-	});
-}
-
-function selectDayListAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/dls",
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			setDayDetail(result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function updateDayAjax(){
-	var totalDay="";
-	$("input[name='day_names']").each(function (i){
-		var data = $("input[name='day_names']").eq(i).val();
-		if(data!=""){
-			if(totalDay=="")totalDay+=$("input[name='day_names']").eq(i).val();
-			else totalDay+=","+$("input[name='day_names']").eq(i).val();
-		}
-	});
+	//문자메시지 작성 후 문자 등록하기 시 셋팅값
+//	var dats ={
+//			sms_text	 : ""  //문자 작성 값
+//	}
 	
-	$("#day_name").val(totalDay);
-	$.ajax({
-		type: "POST",
-		url: "/con/dup",
-		data: JSON.stringify($("#day_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
+/*	
+	위 내용에서 중요한점은. 문자 메시지 사용 미사용 설정과 
+	문자등록하기 시 보내주는 정보는 반드시 지켜야 합니다.
+	ex) 동시에 설정하면 안되는 예시
+		var dats ={
+			sms_text	 : "",  
+			sms_text	 : ""  //문자 작성 값
 		}
-	});
-}
-
-
-function selectTimeListAjax(){
+	*/
 	$.ajax({
 		type: "POST",
-		url: "/con/tls",
+		url: "/pn/up",
 		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(result){
-			setTimeDetail(result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function updateTimeAjax(){
-	setTimeTR();
-	$.ajax({
-		type: "POST",
-		url: "/con/tup",
-		data: JSON.stringify($("#time_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function selectNoneAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/wls",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			$("#example2").html("");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-var whiteList;
-function selectWhiteAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/wls",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			whiteList = data;
-			setBWListTable("white");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-var ocsList;
-function selectOcsAjax(){
-	$.ajax({
-		type: "POST",
-		url: "/con/ols",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			ocsList = data;
-			setBWListTable("ocs");
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-		}
-	});
-}
-
-function insertBWAjax(type){
-	
-	$.ajax({
-		type: "POST",
-		url: type=="1"? "/con/win":"/con/oin",
-		data: JSON.stringify($("#bw_setting").serializeObject()),
-		dataType:"json",
-		contentType: "application/json; charset=UTF-8",
-		success: function(data) {
-			toastr.success(data.result);
-		},
-		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.');
-			if(type=="1")selectWhiteAjax();
-			else selectOcsAjax();
-		}
-	});
-}
-
-function deleteCfAjax() {
-//	JSON.stringify($("#cf_setting").serializeObject())
-	var dd = getCheck();
-	$.ajax({
-		type: "POST",
-		url: "/dest/cfdel",
-		data: {data:dd},
-		dataType:"json",
+		data: JSON.stringify(dats),
 		contentType: "application/json; charset=UTF-8",
 		success: function(result) {
-			if(result) {
-				toastr.success(result);
-//				location.reload();
-				selectCfListAjax();
+			if(result.result=="OK"){
+				alert(result.reason);
+			}else{
+				alert(result.reason);
 			}
-			else toastr.error(result);
 		},
 		error: function (error) {
-			toastr.error('정보가 잘못되었습니다.')
+			
 		}
 	});
 }
 
-
-
+//대용량 업데이트
+function ajaxManagementFileUpdate(){
+	var cldList = [{
+			pn : "0508080000",		//안심번호
+			called1 : "123123",	//1차 착신번호
+			called2 : "2342",	//2차 착신번호
+			called3 : "6232"	//3차 착신번호
+	},
+	{
+		pn : "0508080001",		//안심번호
+		called1 : "11",	//1차 착신번호
+		called2 : "22",	//2차 착신번호
+		called3 : "33"	//3차 착신번호
+	}
+	];
+	
+	var dats ={
+			rep_type	 : "",  //0 : 대역조회시 | 1 : 안심번호 | 2 : 착신번호
+			pn 			 : "",  //안심 or 착신번호시 번호값
+			pn_start 	 : "",  // 대역조회시 시작값
+			pn_end 		 : "",  // 대역조회시 끝값
+			rowcnt 	 	 : "",  // 최대 row 수
+			page 		 : "",  // 현 page
+			cldList 	 : cldList // 수정할 대상
+	}
+	$.ajax({
+		type: "POST",
+		url: "/pn/mgfile",
+		dataType:"json",
+		data: JSON.stringify(dats),
+		contentType: "application/json; charset=UTF-8",
+		success: function(result) {
+			if(result.result=="OK"){
+				alert(result.reason);
+			}else{
+				alert(result.reason);
+			}
+		},
+		error: function (error){
+		}
+	});
+}

@@ -15,7 +15,7 @@ body {margin: 0;font-family: "NanumSquareRoundR", -apple-system, BlinkMacSystemF
 .mb0{margin-bottom:0 !important;}
 .mb5{margin-bottom:5px !important;}
 .inline-block{display:inline-block;}
-.card-footer .btn-lg{min-width:150px;}
+
 .between-date-wrap::after{display:block;clear:both;content:"";}
 .between-date-wrap .between-date-item{float:left;}
 .between-date-wrap .between-date{width:47%;}
@@ -23,7 +23,7 @@ body {margin: 0;font-family: "NanumSquareRoundR", -apple-system, BlinkMacSystemF
 .alert-text{font-weight:bold;margin-bottom:5px;}
 .alert-text p{margin:0;}
 .custom-file-input ~ .custom-file-label::after {content: "찾아보기";}
-
+.fc_white{color:#ffffff !important;}
 .layout-boxed .wrapper, .layout-boxed .wrapper::before {
     max-width: 100%;
 }
@@ -36,4 +36,9 @@ a.logo-link span { display: block; padding-left: 50px; }
 .form_desc{margin:5px 0 0 0;}
 .inline-radio-wrap label{margin-right:10px;}
 .inline-radio-wrap input[type='radio']{margin-right:3px;position:relative;top:1px;}
-.textarea100{resize:none;height:100px;}
+textarea.textarea100{resize:none;height:100px;}
+
+
+@media screen and (min-width: 576px) {
+    .card-footer .btn-lg{min-width:150px;}
+}

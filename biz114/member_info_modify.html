@@ -76,10 +76,16 @@
             <!-- Main content -->
             <section class="content">
                 <div class="card card-info">
-                    <div  id="" class="card-body dataTables_wrapper">
-                        <div class="row ">
-                            <div class="col-sm-12">
-                                <table id="example2" class="table table-bordered table-hover" role="grid" >
+                    <div id="" class="card-body dataTables_wrapper">
+                        <div class="table-responsive">
+                            <table id="" class="table table-bordered table-hover" role="grid" >
+                                <colgroup>
+                                    <col style="width:20%;" />
+                                    <col style="width:30%;" />
+                                    <col style="width:20%;" />
+                                    <col style="width:30%;" />
+                                </colgroup>
+                                <tbody>
                                     <tr>
                                         <th>대표 안심번호</th>
                                         <td>TEST111</td>
@@ -111,13 +117,13 @@
                                         <th>등록일</th>
                                         <td>2019-08-07</td>
                                     </tr>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary">수정</button>
-                            <button class="btn btn-default">취소</button>
-                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">수정</button>
+                        <button class="btn btn-default">취소</button>
                     </div>
                 </div>
                 <!-- /.content -->
